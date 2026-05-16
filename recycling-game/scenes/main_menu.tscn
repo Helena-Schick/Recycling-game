@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://rnif5kchm8ca"]
+
+[node name="MainMenu" type="Control" unique_id=1032258330]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=421233001]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 133.0
+offset_right = 799.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 80
+text = "Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245542633]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 309.0
+offset_right = 738.0
+offset_bottom = 444.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=1598399180]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=502594804]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=7436235]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Button 3
+"
