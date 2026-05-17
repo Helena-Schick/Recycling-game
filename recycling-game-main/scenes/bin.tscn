@@ -3,10 +3,7 @@
 [ext_resource type="Script" uid="uid://ir6oalrr38jm" path="res://scripts/bin.gd" id="1_iw544"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_klg2r"]
-size = Vector3(4, 5, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjv5w"]
-albedo_color = Color(1, 0.40784314, 0.41960785, 1)
+size = Vector3(3, 1.8022461, 3)
 
 [node name="bin" type="Node3D" unique_id=368182351]
 script = ExtResource("1_iw544")
@@ -15,10 +12,7 @@ bin_number = 1
 [node name="Area3D" type="Area3D" parent="." unique_id=1816650088]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1010077108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.098877, 0)
 shape = SubResource("BoxShape3D_klg2r")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=272087499]
-size = Vector3(4, 5, 4)
-material = SubResource("StandardMaterial3D_rjv5w")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

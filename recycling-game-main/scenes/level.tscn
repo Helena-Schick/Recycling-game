@@ -18,32 +18,84 @@ sky = SubResource("Sky_w7c3h")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm", "marker_1")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klq6b"]
+transparency = 1
+albedo_color = Color(1, 0.40784314, 0.41960785, 0.4627451)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx8sn"]
+transparency = 1
+albedo_color = Color(0.18431373, 0.8666667, 0.14117648, 0.39215687)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
+transparency = 1
+albedo_color = Color(0.42352942, 0.89411765, 1, 0.4745098)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
+transparency = 1
+albedo_color = Color(1, 0.8666667, 0, 0.5058824)
+
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm")]
 script = ExtResource("1_mx8sn")
 conveyor = NodePath("conveyer")
 arm = NodePath("arm")
-marker_1 = NodePath("bin/Marker3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.8943055, -0.41961607, 0.15537049, 0.23946981, -0.15551612, 0.95836776, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
 light_color = Color(1, 1, 0.8392157, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1075231217]
 environment = SubResource("Environment_w8frs")
 
-[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("marker_1", "level") instance=ExtResource("1_2q6dc")]
-marker_1 = NodePath("../bin/Marker3D")
+[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("bin_markers", "level") instance=ExtResource("1_2q6dc")]
+bin_markers = [NodePath("../bin/Marker3D"), NodePath("../bin2/Marker3D"), NodePath("../bin3/Marker3D"), NodePath("../bin4/Marker3D")]
 level = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1772572577]
-transform = Transform3D(0.73372984, 0.08044855, -0.6746618, 0, 0.9929655, 0.11840397, 0.67944133, -0.08687653, 0.72856843, -6.6988583, 9.242195, 15.256607)
-
-[node name="bin" parent="." unique_id=368182351 instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.663723, 3.6090622, 0)
-
-[node name="Marker3D" type="Marker3D" parent="bin" unique_id=1765529283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.014678, 0)
+transform = Transform3D(0.5252043, 0.10075897, -0.84499013, 9.737902e-09, 0.99296564, 0.118404, 0.8509764, -0.062186293, 0.5215099, -5.7732453, 10.315879, 13.71086)
 
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.380211, 1.6857271, -10.582191)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
+
+[node name="bin" parent="." unique_id=368182351 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -5.1)
+bin_number = 0
+
+[node name="Marker3D" type="Marker3D" parent="bin" unique_id=1765529283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="bin" unique_id=1435687065]
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_klq6b")
+
+[node name="bin2" parent="." unique_id=1994548004 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -1.7)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="bin2" unique_id=2146629585]
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_mx8sn")
+
+[node name="Marker3D" type="Marker3D" parent="bin2" unique_id=1488307046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="bin3" parent="." unique_id=231229163 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 1.7)
+bin_number = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="bin3" unique_id=1091047088]
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_ppgk2")
+
+[node name="Marker3D" type="Marker3D" parent="bin3" unique_id=329599507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="bin4" parent="." unique_id=867321938 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 5.1)
+bin_number = 3
+
+[node name="Marker3D" type="Marker3D" parent="bin4" unique_id=1562075659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="bin4" unique_id=1224765116]
+size = Vector3(3, 4, 3)
+material = SubResource("StandardMaterial3D_2r41h")

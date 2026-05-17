@@ -2,17 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bq54vu85g7ksd" path="res://scripts/item.gd" id="1_4gq7n"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4gq7n"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_s8enn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6muww"]
 albedo_color = Color(1, 0, 0, 1)
 
-[node name="item" type="RigidBody3D" unique_id=1152029425]
-mass = 3.0
+[node name="item" type="RigidBody3D" unique_id=821805852]
 script = ExtResource("1_4gq7n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=563066937]
-shape = SubResource("BoxShape3D_4gq7n")
+shape = SubResource("SphereShape3D_s8enn")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=732080550]
 material = SubResource("StandardMaterial3D_6muww")

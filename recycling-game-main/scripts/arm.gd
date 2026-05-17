@@ -4,12 +4,13 @@ extends Node3D
 @export var ik_target : Node
 @export var armature : Node
 @export var rest : Node
-@export var marker_1 : Node
+@export var bin_markers : Array[Node]
 @export var level : Node
 const SPEED : float = 20.0
 var target_pos
 var target_item
 var grabbed_item
+var target_bin : int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,14 +46,12 @@ func _reached_target() -> void:
 		# pick up rubbish item
 		target_item.reparent(marker, true)
 		grabbed_item = target_item
-		target_item.gravity_scale = 0
-		target_item.velocity = Vector3(0, 0, 0)
+		target_item.sleeping = true
 		
-		target_item = marker_1 # new target
-	elif target_item == marker_1:
+		target_item = bin_markers[target_bin] # new target
+	elif target_item in bin_markers:
 		# drop item
 		grabbed_item.reparent(level, true)
-		grabbed_item.gravity_scale = 1
-		grabbed_item.velocity = Vector3(0, 0, 0)
+		grabbed_item.sleeping = false
 		
 		target_item = rest # new target
