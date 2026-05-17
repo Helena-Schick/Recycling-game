@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dohysnu0d1up2"]
 
 [ext_resource type="PackedScene" uid="uid://dt16yelomrg8b" path="res://scenes/arm.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://lqdklbcpnxg6" path="res://scripts/level.gd" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,7 +18,11 @@ sky = SubResource("Sky_w7c3h")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Node3D" type="Node3D" unique_id=447120380]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm", "marker_1")]
+script = ExtResource("1_mx8sn")
+conveyor = NodePath("conveyer")
+arm = NodePath("arm")
+marker_1 = NodePath("bin/Marker3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -25,7 +32,18 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1075231217]
 environment = SubResource("Environment_w8frs")
 
-[node name="armmmmmmmmmmmmmmmmmmmmm" parent="." unique_id=16693362 instance=ExtResource("1_2q6dc")]
+[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("marker_1", "level") instance=ExtResource("1_2q6dc")]
+marker_1 = NodePath("../bin/Marker3D")
+level = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1772572577]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.9748, 15.913023)
+transform = Transform3D(0.73372984, 0.08044855, -0.6746618, 0, 0.9929655, 0.11840397, 0.67944133, -0.08687653, 0.72856843, -6.6988583, 9.242195, 15.256607)
+
+[node name="bin" parent="." unique_id=368182351 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.663723, 3.6090622, 0)
+
+[node name="Marker3D" type="Marker3D" parent="bin" unique_id=1765529283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.014678, 0)
+
+[node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.380211, 1.6857271, -10.582191)

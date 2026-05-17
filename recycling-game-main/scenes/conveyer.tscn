@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bla225e0h4nil"]
+
+[ext_resource type="Script" uid="uid://dthquj581k1b8" path="res://scripts/conveyer.gd" id="1_rntgv"]
+[ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="2_7cd8w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7cd8w"]
+size = Vector3(5, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_paugm"]
+size = Vector3(5, 0.1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cd8w"]
+albedo_color = Color(0.41960785, 1, 0.40392157, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28sha"]
+size = Vector3(5.1, 0.2, 8)
+
+[node name="conveyer" type="Node3D" unique_id=1782603669 node_paths=PackedStringArray("area")]
+script = ExtResource("1_rntgv")
+area = NodePath("target_area")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1681090691]
+size = Vector3(5, 0.5, 40)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=995458812]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1533608439]
+shape = SubResource("BoxShape3D_7cd8w")
+
+[node name="conveyer_area" type="Area3D" parent="." unique_id=1660293253]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer_area" unique_id=2142502933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31, 0)
+shape = SubResource("BoxShape3D_paugm")
+
+[node name="spawner" parent="." unique_id=600458319 instance=ExtResource("2_7cd8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5286818, -15.76899)
+
+[node name="target_area" type="Area3D" parent="." unique_id=932064702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.300286)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="target_area" unique_id=692466783]
+size = Vector3(5.1, 0.6, 8)
+material = SubResource("StandardMaterial3D_7cd8w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="target_area" unique_id=891543933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_28sha")
+
+[connection signal="body_entered" from="conveyer_area" to="." method="_on_area_3d_body_entered"]
