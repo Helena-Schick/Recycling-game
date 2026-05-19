@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dt16yelomrg8b" path="res://scenes/arm.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://lqdklbcpnxg6" path="res://scripts/level.gd" id="1_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
 
@@ -19,25 +20,24 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klq6b"]
-transparency = 1
-albedo_color = Color(1, 0.40784314, 0.41960785, 0.4627451)
+albedo_color = Color(1, 0, 0, 0.4627451)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx8sn"]
-transparency = 1
 albedo_color = Color(0.18431373, 0.8666667, 0.14117648, 0.39215687)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppgk2"]
-transparency = 1
 albedo_color = Color(0.42352942, 0.89411765, 1, 0.4745098)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
-transparency = 1
 albedo_color = Color(1, 0.8666667, 0, 0.5058824)
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm", "pause_menu", "score_display")]
 script = ExtResource("1_mx8sn")
 conveyor = NodePath("conveyer")
 arm = NodePath("arm")
+pause_menu = NodePath("CanvasLayer/pause_menu")
+main_menu_scene = ExtResource("2_ppgk2")
+score_display = NodePath("CanvasLayer/score_label")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.8943055, -0.41961607, 0.15537049, 0.23946981, -0.15551612, 0.95836776, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
@@ -57,9 +57,10 @@ transform = Transform3D(0.5252043, 0.10075897, -0.84499013, 9.737902e-09, 0.9929
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
 
-[node name="bin" parent="." unique_id=368182351 instance=ExtResource("2_w7c3h")]
+[node name="bin" parent="." unique_id=368182351 node_paths=PackedStringArray("level") instance=ExtResource("2_w7c3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -5.1)
 bin_number = 0
+level = NodePath("..")
 
 [node name="Marker3D" type="Marker3D" parent="bin" unique_id=1765529283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -68,30 +69,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 size = Vector3(3, 4, 3)
 material = SubResource("StandardMaterial3D_klq6b")
 
-[node name="bin2" parent="." unique_id=1994548004 instance=ExtResource("2_w7c3h")]
+[node name="bin2" parent="." unique_id=1994548004 node_paths=PackedStringArray("level") instance=ExtResource("2_w7c3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -1.7)
+level = NodePath("..")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="bin2" unique_id=2146629585]
 size = Vector3(3, 4, 3)
 material = SubResource("StandardMaterial3D_mx8sn")
 
 [node name="Marker3D" type="Marker3D" parent="bin2" unique_id=1488307046]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="bin3" parent="." unique_id=231229163 instance=ExtResource("2_w7c3h")]
+[node name="bin3" parent="." unique_id=231229163 node_paths=PackedStringArray("level") instance=ExtResource("2_w7c3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 1.7)
 bin_number = 2
+level = NodePath("..")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="bin3" unique_id=1091047088]
 size = Vector3(3, 4, 3)
 material = SubResource("StandardMaterial3D_ppgk2")
 
 [node name="Marker3D" type="Marker3D" parent="bin3" unique_id=329599507]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="bin4" parent="." unique_id=867321938 instance=ExtResource("2_w7c3h")]
+[node name="bin4" parent="." unique_id=867321938 node_paths=PackedStringArray("level") instance=ExtResource("2_w7c3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 5.1)
 bin_number = 3
+level = NodePath("..")
 
 [node name="Marker3D" type="Marker3D" parent="bin4" unique_id=1562075659]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -99,3 +103,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 [node name="CSGBox3D2" type="CSGBox3D" parent="bin4" unique_id=1224765116]
 size = Vector3(3, 4, 3)
 material = SubResource("StandardMaterial3D_2r41h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1617160443]
+
+[node name="pause" type="Button" parent="CanvasLayer" unique_id=1551844218]
+anchors_preset = -1
+anchor_left = 0.9461806
+anchor_top = 0.043209877
+anchor_right = 0.984375
+anchor_bottom = 0.108024694
+text = "| |"
+metadata/_edit_use_anchors_ = true
+
+[node name="score_label" type="Label" parent="CanvasLayer" unique_id=22530594]
+offset_left = 42.0
+offset_top = 586.0
+offset_right = 103.0
+offset_bottom = 609.0
+text = "Score: 0"
+
+[node name="pause_menu" type="CanvasLayer" parent="CanvasLayer" unique_id=1263451532]
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/pause_menu" unique_id=2075976138]
+offset_left = 194.0
+offset_top = 128.0
+offset_right = 960.0
+offset_bottom = 529.0
+color = Color(1, 1, 1, 0.47058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pause_menu" unique_id=2001053212]
+offset_left = 384.0
+offset_top = 274.0
+offset_right = 752.0
+offset_bottom = 409.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Resume" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1112605140]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Unpause"
+
+[node name="Exit" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=594748356]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit to Menu"
+
+[connection signal="pressed" from="CanvasLayer/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

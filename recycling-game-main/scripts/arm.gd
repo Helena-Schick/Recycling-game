@@ -6,11 +6,13 @@ extends Node3D
 @export var rest : Node
 @export var bin_markers : Array[Node]
 @export var level : Node
-const SPEED : float = 20.0
+const SPEED : float = 15.0
+const Y_MOVEMENT_SCALE : int = 3
 var target_pos
 var target_item
 var grabbed_item
 var target_bin : int = 0
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,13 +26,22 @@ func _process(delta: float) -> void:
 
 
 func movement(delta: float) -> void:
-	# move marker towards target item
 	if target_item:
 		target_pos = target_item.global_position
-		marker.global_position.x = move_toward(marker.global_position.x, target_pos.x, SPEED * delta)
-		marker.global_position.y = move_toward(marker.global_position.y, target_pos.y, SPEED * delta)
-		marker.global_position.z = move_toward(marker.global_position.z, target_pos.z, SPEED * delta)
+		var dir = abs(marker.global_position.direction_to(target_pos))
 		
+		if grabbed_item: # move up faster when holding an item
+			# prevents the arm from colliding with the bins
+			dir.y = dir.y * Y_MOVEMENT_SCALE
+		
+		# move marker towards target item
+		var marker_pos = marker.global_position
+		marker.global_position.x = move_toward(marker_pos.x, target_pos.x, SPEED * delta * dir.x)
+		marker.global_position.y = move_toward(marker_pos.y, target_pos.y, SPEED * delta * dir.y)
+		marker.global_position.z = move_toward(marker_pos.z, target_pos.z, SPEED * delta * dir.z)
+		
+		
+			
 		# check if the target has been reached
 		if marker.global_position == target_pos:
 			_reached_target()
@@ -53,5 +64,5 @@ func _reached_target() -> void:
 		# drop item
 		grabbed_item.reparent(level, true)
 		grabbed_item.sleeping = false
-		
+		grabbed_item = null
 		target_item = rest # new target

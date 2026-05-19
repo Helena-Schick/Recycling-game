@@ -3,12 +3,45 @@
 [ext_resource type="Script" uid="uid://cw7o5qxi6dkf4" path="res://scripts/spawner.gd" id="1_2vbf6"]
 [ext_resource type="PackedScene" uid="uid://bialkiujn08if" path="res://scenes/item.tscn" id="2_ik2nu"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ik2nu"]
+albedo_color = Color(1, 0.16862746, 0.15686275, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tx2ig"]
+material = SubResource("StandardMaterial3D_ik2nu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wbs5"]
+albedo_color = Color(0.28627452, 1, 0.23529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_30a77"]
+material = SubResource("StandardMaterial3D_4wbs5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bbd6"]
+albedo_color = Color(0.09411765, 0.7176471, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cmhla"]
+material = SubResource("StandardMaterial3D_6bbd6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5s3f"]
+albedo_color = Color(1, 0.8901961, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e3f8v"]
+material = SubResource("StandardMaterial3D_p5s3f")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ik2nu"]
+size = Vector3(3.6, 1, 3.6)
+
 [node name="spawner" type="Node3D" unique_id=600458319 node_paths=PackedStringArray("timer")]
 script = ExtResource("1_2vbf6")
 timer = NodePath("Timer")
-scenes = [ExtResource("2_ik2nu")]
+item_scene = ExtResource("2_ik2nu")
+mesh = Array[Mesh]([SubResource("BoxMesh_tx2ig"), SubResource("BoxMesh_30a77"), SubResource("BoxMesh_cmhla"), SubResource("BoxMesh_e3f8v")])
+bin_num = Array[int]([0, 1, 2, 3])
 
 [node name="Timer" type="Timer" parent="." unique_id=1582779946]
 autostart = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1330186567]
+visible = false
+mesh = SubResource("BoxMesh_ik2nu")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

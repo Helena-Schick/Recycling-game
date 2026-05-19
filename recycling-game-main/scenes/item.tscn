@@ -15,4 +15,5 @@ script = ExtResource("1_4gq7n")
 shape = SubResource("BoxShape3D_4gq7n")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=732080550]
+visible = false
 material = SubResource("StandardMaterial3D_6muww")

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://rnif5kchm8ca"]
 
 [ext_resource type="Script" uid="uid://bhu3j7dtwodyo" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="PackedScene" uid="uid://dohysnu0d1up2" path="res://scenes/level.tscn" id="2_bqqt6"]
 
 [node name="MainMenu" type="Control" unique_id=1032258330]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
-main = ExtResource("2_bqqt6")
 
 [node name="Label" type="Label" parent="." unique_id=421233001]
 layout_mode = 0
@@ -42,12 +40,6 @@ text = "Play"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
-
-[node name="Button3" type="Button" parent="VBoxContainer" unique_id=7436235]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Button 3
-"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
