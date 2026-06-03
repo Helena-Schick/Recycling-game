@@ -4,16 +4,12 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gq7n"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6muww"]
-albedo_color = Color(1, 0, 0, 1)
-
-[node name="item" type="RigidBody3D" unique_id=1152029425]
+[node name="item" type="RigidBody3D" unique_id=1152029425 node_paths=PackedStringArray("mesh_instance")]
 mass = 3.0
 script = ExtResource("1_4gq7n")
+mesh_instance = NodePath("MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=563066937]
 shape = SubResource("BoxShape3D_4gq7n")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=732080550]
-visible = false
-material = SubResource("StandardMaterial3D_6muww")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=231355823]

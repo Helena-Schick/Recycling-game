@@ -1,4 +1,5 @@
 extends Node3D
+
 @export var conveyor : Node
 @export var arm : Node
 @export var pause_menu : Node
@@ -17,7 +18,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		_move_item(2)
 	if Input.is_action_just_pressed("ui_4"):
 		_move_item(3)
-	
+
+
 func _move_item(bin_number):
 	var item = conveyor.grab_item()
 	if item:

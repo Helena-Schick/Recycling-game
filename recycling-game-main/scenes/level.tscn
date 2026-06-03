@@ -47,12 +47,12 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1075231217]
 environment = SubResource("Environment_w8frs")
 
-[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("bin_markers", "level") instance=ExtResource("1_2q6dc")]
-bin_markers = [NodePath("../bin/Marker3D"), NodePath("../bin2/Marker3D"), NodePath("../bin3/Marker3D"), NodePath("../bin4/Marker3D")]
+[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("level", "bin_markers") instance=ExtResource("1_2q6dc")]
 level = NodePath("..")
+bin_markers = [NodePath("../bin/Marker3D"), NodePath("../bin2/Marker3D"), NodePath("../bin3/Marker3D"), NodePath("../bin4/Marker3D")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1772572577]
-transform = Transform3D(0.5252043, 0.10075897, -0.84499013, 9.737902e-09, 0.99296564, 0.118404, 0.8509764, -0.062186293, 0.5215099, -5.7732453, 10.315879, 13.71086)
+transform = Transform3D(0.5252041, 0.10075898, -0.84499013, 9.737899e-09, 0.9929655, 0.118403986, 0.8509763, -0.062186267, 0.5215096, -5.7732453, 9.351351, 9.54465)
 
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
@@ -120,7 +120,7 @@ offset_left = 42.0
 offset_top = 586.0
 offset_right = 103.0
 offset_bottom = 609.0
-text = "Score: 0"
+text = "SCORE: 0"
 
 [node name="pause_menu" type="CanvasLayer" parent="CanvasLayer" unique_id=1263451532]
 process_mode = 2

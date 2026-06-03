@@ -41,23 +41,142 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ayy78")
 
-[node name="arm" unique_id=1650899576 node_paths=PackedStringArray("ik", "marker", "ik_target", "armature", "rest") instance=ExtResource("1_muf2m")]
+[sub_resource type="Animation" id="Animation_gowua"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Bone_007/Cylinder_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5630991, 1.5707809, -1.5708119)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/Bone_009/Cylinder_010:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5630991, 1.5707662, -1.5708274)]
+}
+
+[sub_resource type="Animation" id="Animation_hhxxg"]
+resource_name = "close_claw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Bone_009/Cylinder_010:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.4835298, 1.5707964, -1.5707964), Vector3(1.9198622, 1.5707964, -1.5707964)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/Bone_007/Cylinder_011:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.6580628, 1.5707964, -1.5707964), Vector3(1.2217305, 1.5707964, -1.5707964)]
+}
+
+[sub_resource type="Animation" id="Animation_jslam"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Bone_007/Cylinder_011:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.6580628, 1.5707964, -1.5707964), Vector3(1.2217305, 1.5707964, -1.5707964)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/Bone_009/Cylinder_010:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.4835298, 1.5707964, -1.5707964), Vector3(1.9198622, 1.5707964, -1.5707964)]
+}
+
+[sub_resource type="Animation" id="Animation_o10co"]
+resource_name = "open_claw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/Bone_009/Cylinder_010:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.9198622, 1.5707964, -1.5707964), Vector3(1.4835298, 1.5707964, -1.5707964)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/Bone_007/Cylinder_011:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.2217305, 1.5707964, -1.5707964), Vector3(1.6580628, 1.5707964, -1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o10co"]
+_data = {
+&"RESET": SubResource("Animation_gowua"),
+&"close_claw": SubResource("Animation_hhxxg"),
+&"new_animation": SubResource("Animation_jslam"),
+&"open_claw": SubResource("Animation_o10co")
+}
+
+[node name="arm" unique_id=1650899576 node_paths=PackedStringArray("ik", "rest", "marker", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
 script = ExtResource("2_dy6di")
 ik = NodePath("Armature/Skeleton3D/SkeletonIK3D")
-marker = NodePath("Marker3D")
-ik_target = NodePath("Armature/ik_target")
-armature = NodePath("Armature")
 rest = NodePath("rest_position_marker")
+marker = NodePath("Marker3D")
+armature = NodePath("Armature")
+animation = NodePath("AnimationPlayer")
+ik_target = NodePath("Armature/ik_target")
 
 [node name="Cylinder_011" parent="Armature/Skeleton3D/Bone_007" parent_id_path=PackedInt32Array(1874056744) index="0" unique_id=836250087]
+transform = Transform3D(-0.23148102, -7.4777724e-08, 0.0017817864, -0.0017817864, -1.0285764e-07, -0.23148102, 2.0343768e-08, -0.85986924, 2.753483e-08, -0.002724409, -0.05196953, -6.8291595e-11)
 surface_material_override/0 = ExtResource("3_dy6di")
 
 [node name="Cylinder_012" parent="Armature/Skeleton3D/Bone_006" parent_id_path=PackedInt32Array(1971973165) index="0" unique_id=2040033975]
-transform = Transform3D(-0.2314879, -7.517216e-08, -1.0118658e-08, 1.0118658e-08, 1.6429396e-15, -0.2314879, 2.0237316e-08, -0.85986924, 4.4230057e-16, 0, 0, 0)
+transform = Transform3D(-0.2314879, -1.2983665e-07, 1.5278749e-15, 0, -3.758608e-08, -0.2314879, 3.49537e-08, -0.85986924, 1.0118658e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_3j5xu")
 surface_material_override/0 = ExtResource("3_dy6di")
 
 [node name="Cylinder_010" parent="Armature/Skeleton3D/Bone_009" parent_id_path=PackedInt32Array(1284969678) index="0" unique_id=589964670]
+transform = Transform3D(-0.23148105, -7.9191136e-07, 0.0017817867, -0.0017817867, -2.0542598e-07, -0.23148105, 2.1361213e-07, -0.85986936, 5.3660713e-08, -0.0026626587, -0.058052, 2.4122853e-09)
 surface_material_override/0 = ExtResource("3_dy6di")
 
 [node name="Cylinder_009" parent="Armature/Skeleton3D/Bone_008" parent_id_path=PackedInt32Array(2118503921) index="0" unique_id=50937851]
@@ -96,3 +215,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
 
 [node name="rest_position_marker" type="Marker3D" parent="." index="2" unique_id=725444457]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=101384482]
+libraries/ = SubResource("AnimationLibrary_o10co")
+speed_scale = 5.0
