@@ -5,8 +5,16 @@ extends Node3D
 @export var pause_menu : Node
 @export var main_menu_scene : PackedScene
 @export var score_display : Node
+@export var settings : PackedScene
+@export var arm_colour : Resource
 
 var score : int = 0
+
+
+func _ready() -> void:
+	Global.load_data()
+	arm_colour.albedo_color = Global.colour
+	
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -28,14 +36,14 @@ func _move_item(bin_number):
 			arm.target_bin = bin_number
 
 
-func _on_pause_pressed() -> void:
+func open_pause_menu() -> void:
 	pause_menu.visible = true
 	get_tree().paused = true
 
 
 func _on_resume_pressed() -> void:
-	pause_menu.visible = false
 	get_tree().paused = false
+	pause_menu.visible = false
 
 
 func _on_exit_pressed() -> void:
@@ -46,3 +54,12 @@ func _on_exit_pressed() -> void:
 func change_score(value) -> void:
 	score += value
 	score_display.text = "SCORE: " + str(score)
+
+
+func _on_settings_pressed() -> void:
+	var settings_menu = settings.instantiate()
+	pause_menu.visible = false
+	settings_menu.main = self
+	add_child(settings_menu)
+	
+	

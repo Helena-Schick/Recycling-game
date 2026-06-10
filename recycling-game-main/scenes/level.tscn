@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://lqdklbcpnxg6" path="res://scripts/level.gd" id="1_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://c1o047ea2cv2a" path="res://scenes/settings_menu.tscn" id="3_2r41h"]
+[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/material2.tres" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
@@ -38,6 +40,8 @@ arm = NodePath("arm")
 pause_menu = NodePath("CanvasLayer/pause_menu")
 main_menu_scene = ExtResource("2_ppgk2")
 score_display = NodePath("CanvasLayer/score_label")
+settings = ExtResource("3_2r41h")
+arm_colour = ExtResource("4_klq6b")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.8943055, -0.41961607, 0.15537049, 0.23946981, -0.15551612, 0.95836776, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
@@ -146,11 +150,17 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Unpause"
 
+[node name="Settings" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1597491005]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
 [node name="Exit" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=594748356]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit to Menu"
 
-[connection signal="pressed" from="CanvasLayer/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause" to="." method="open_pause_menu"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

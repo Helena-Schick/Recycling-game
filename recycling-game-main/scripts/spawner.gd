@@ -5,14 +5,14 @@ extends Node3D
 @export var mesh : Array[Mesh]
 @export var bin_num : Array[int]
 
-var time : float = 3.0
-var randomness : float = 0.5
+var time : float = 2.0
+var randomness : float = 0.8
 var size : float = 1.3
 
 
 func _on_timer_timeout() -> void:
 	# start timer again
-	timer.wait_time = time + randf_range(-0.5, 0.5) * randomness
+	timer.wait_time = time + randf_range(-0.5, 0.5) * randomness * time
 	timer.start()
 	
 	# spawn item

@@ -14,6 +14,10 @@ config/name="recycling game"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+Global="*uid://c7oxnneh3psvk"
+
 [global_group]
 
 rubbish_items=""
