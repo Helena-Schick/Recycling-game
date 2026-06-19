@@ -55,4 +55,4 @@ color = Color(0.13333334, 0.8352941, 1, 1)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="." method="_on_exit_pressed"]
-[connection signal="color_changed" from="ColorPickerButton" to="." method="set_colour"]
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_set_colour"]

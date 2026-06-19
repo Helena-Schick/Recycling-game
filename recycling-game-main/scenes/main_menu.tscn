@@ -13,23 +13,25 @@ script = ExtResource("1_ekxnf")
 
 [node name="Label" type="Label" parent="." unique_id=421233001]
 layout_mode = 0
-offset_left = 337.0
-offset_top = 133.0
-offset_right = 799.0
-offset_bottom = 273.0
+anchor_left = 0.2925347
+anchor_top = 0.20524691
+anchor_right = 0.6935764
+anchor_bottom = 0.4212963
 theme_override_font_sizes/font_size = 80
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245542633]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 309.0
-offset_right = 738.0
-offset_bottom = 444.0
+anchor_left = 0.32118055
+anchor_top = 0.47685185
+anchor_right = 0.640625
+anchor_bottom = 0.6851852
 theme_override_constants/separation = 6
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Play" type="Button" parent="VBoxContainer" unique_id=1598399180]
 layout_mode = 2

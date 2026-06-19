@@ -1,23 +1,26 @@
 extends Node3D
 
-@export var conveyor : Node
-@export var arm : Node
-@export var pause_menu : Node
-@export var main_menu_scene : PackedScene
-@export var score_display : Node
-@export var settings : PackedScene
-@export var arm_colour : Resource
+@export var arm : Node ##The mechanical arm node
+@export var conveyor : Node ##The conveyer belt node 
+@export var camera_a : Node ##The main camera 
+@export var camera_b : Node ##The second camera to switch to
+@export var pause_menu : Node ##The pause menu canvas layer
+@export var score_display : Node ##The label that displays the player's score
+@export var arm_material : Resource ##The material resource for the arm
+@export var settings_menu : PackedScene ##The scene for the settings menu
+@export var main_menu_scene : PackedScene ##The main menu packed scene
 
 var score : int = 0
+var current_camera : int = 0
 
 
 func _ready() -> void:
 	Global.load_data()
-	arm_colour.albedo_color = Global.colour
-	
+	arm_material.albedo_color = Global.colour
 
 
 func _unhandled_input(_event: InputEvent) -> void:
+	# handle inputs for controls
 	if Input.is_action_just_pressed("ui_1"):
 		_move_item(0)
 	if Input.is_action_just_pressed("ui_2"):
@@ -26,12 +29,21 @@ func _unhandled_input(_event: InputEvent) -> void:
 		_move_item(2)
 	if Input.is_action_just_pressed("ui_4"):
 		_move_item(3)
+	
+	# switch the active camera
+	if Input.is_action_just_pressed("ui_spacebar"):
+		current_camera = (current_camera + 1) % 2
+		if current_camera == 0:
+			camera_a.make_current()
+		else:
+			camera_b.make_current()
 
 
+## makes the arm move an item to a specific bin
 func _move_item(bin_number):
 	var item = conveyor.grab_item()
 	if item:
-		if item.is_in_group("rubbish_items"):
+		if item.is_in_group("rubbish_items") and not arm.grabbed_item:
 			arm.target_item = item
 			arm.target_bin = bin_number
 
@@ -53,13 +65,13 @@ func _on_exit_pressed() -> void:
 
 func change_score(value) -> void:
 	score += value
+	if score <= 0:
+		score = 0
 	score_display.text = "SCORE: " + str(score)
 
 
 func _on_settings_pressed() -> void:
-	var settings_menu = settings.instantiate()
+	var settings = settings_menu.instantiate()
 	pause_menu.visible = false
-	settings_menu.main = self
-	add_child(settings_menu)
-	
-	
+	settings.main = self
+	add_child(settings)

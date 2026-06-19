@@ -19,7 +19,6 @@ sky_material = SubResource("ProceduralSkyMaterial_2q6dc")
 background_mode = 2
 sky = SubResource("Sky_w7c3h")
 tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klq6b"]
 albedo_color = Color(1, 0, 0, 0.4627451)
@@ -33,15 +32,17 @@ albedo_color = Color(0.42352942, 0.89411765, 1, 0.4745098)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
 albedo_color = Color(1, 0.8666667, 0, 0.5058824)
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("conveyor", "arm", "pause_menu", "score_display")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "conveyor", "camera_a", "camera_b", "pause_menu", "score_display")]
 script = ExtResource("1_mx8sn")
-conveyor = NodePath("conveyer")
 arm = NodePath("arm")
+conveyor = NodePath("conveyer")
+camera_a = NodePath("Camera A")
+camera_b = NodePath("Camera B")
 pause_menu = NodePath("CanvasLayer/pause_menu")
-main_menu_scene = ExtResource("2_ppgk2")
 score_display = NodePath("CanvasLayer/score_label")
-settings = ExtResource("3_2r41h")
-arm_colour = ExtResource("4_klq6b")
+arm_material = ExtResource("4_klq6b")
+settings_menu = ExtResource("3_2r41h")
+main_menu_scene = ExtResource("2_ppgk2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.8943055, -0.41961607, 0.15537049, 0.23946981, -0.15551612, 0.95836776, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
@@ -55,8 +56,11 @@ environment = SubResource("Environment_w8frs")
 level = NodePath("..")
 bin_markers = [NodePath("../bin/Marker3D"), NodePath("../bin2/Marker3D"), NodePath("../bin3/Marker3D"), NodePath("../bin4/Marker3D")]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1772572577]
+[node name="Camera A" type="Camera3D" parent="." unique_id=1772572577]
 transform = Transform3D(0.5252041, 0.10075898, -0.84499013, 9.737899e-09, 0.9929655, 0.118403986, 0.8509763, -0.062186267, 0.5215096, -5.7732453, 9.351351, 9.54465)
+
+[node name="Camera B" type="Camera3D" parent="." unique_id=1779872693]
+transform = Transform3D(0.9554897, 0.07037319, -0.2865083, 3.0473528e-09, 0.97113425, 0.23853347, 0.29502434, -0.22791629, 0.9279088, 3.5455012, 9.273868, 12.106898)
 
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
@@ -120,30 +124,37 @@ text = "| |"
 metadata/_edit_use_anchors_ = true
 
 [node name="score_label" type="Label" parent="CanvasLayer" unique_id=22530594]
-offset_left = 42.0
-offset_top = 586.0
-offset_right = 103.0
-offset_bottom = 609.0
+anchors_preset = -1
+anchor_left = 0.036458332
+anchor_top = 0.904321
+anchor_right = 0.096354164
+anchor_bottom = 0.9398148
+offset_right = -8.0
 text = "SCORE: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="pause_menu" type="CanvasLayer" parent="CanvasLayer" unique_id=1263451532]
 process_mode = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/pause_menu" unique_id=2075976138]
-offset_left = 194.0
-offset_top = 128.0
-offset_right = 960.0
-offset_bottom = 529.0
+anchors_preset = -1
+anchor_left = 0.16840278
+anchor_top = 0.19753087
+anchor_right = 0.8333333
+anchor_bottom = 0.81635803
 color = Color(1, 1, 1, 0.47058824)
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pause_menu" unique_id=2001053212]
-offset_left = 384.0
-offset_top = 274.0
-offset_right = 752.0
-offset_bottom = 409.0
+anchors_preset = -1
+anchor_left = 0.33333334
+anchor_top = 0.4228395
+anchor_right = 0.6527778
+anchor_bottom = 0.63117284
 theme_override_constants/separation = 6
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Resume" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1112605140]
 layout_mode = 2

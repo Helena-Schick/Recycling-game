@@ -6,6 +6,7 @@ const DIRECTION = Vector3(0, 0, 1)
 const SPEED = 5
 
 
+## returns the first item on the conveyer to be grabbed
 func grab_item():
 	var bodies = target_area.get_overlapping_bodies()
 	if bodies:

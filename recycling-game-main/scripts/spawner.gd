@@ -11,7 +11,7 @@ var size : float = 1.3
 
 
 func _on_timer_timeout() -> void:
-	# start timer again
+	# restart timer 
 	timer.wait_time = time + randf_range(-0.5, 0.5) * randomness * time
 	timer.start()
 	
