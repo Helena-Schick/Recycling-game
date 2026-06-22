@@ -2,8 +2,8 @@ extends Node3D
 
 @export var timer : Node
 @export var item_scene : PackedScene
-@export var mesh : Array[Mesh]
-@export var bin_num : Array[int]
+@export var items : Array[ItemData]
+@export var test : ItemData
 
 var time : float = 2.0
 var randomness : float = 0.8
@@ -16,10 +16,10 @@ func _on_timer_timeout() -> void:
 	timer.start()
 	
 	# spawn item
-	var scene = item_scene.instantiate()
-	var item_index = randi_range(0, mesh.size() - 1)
-	scene.bin = bin_num[item_index]
-	scene.mesh = mesh[item_index]
-	scene.position = position + Vector3(randf_range(-size, size), 0, randf_range(-size, size))
-	scene.add_to_group("rubbish_items")
-	add_sibling(scene)
+	var item = item_scene.instantiate()
+	
+	item.data = items[randi_range(0, items.size() - 1)]
+	item.position = position + Vector3(randf_range(-size, size), 0, 0)
+	
+	item.add_to_group("rubbish_items")
+	add_sibling(item)

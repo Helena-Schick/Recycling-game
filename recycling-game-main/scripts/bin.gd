@@ -1,6 +1,9 @@
 extends Node3D
-@export var bin_number : int
+
+@export var bin_number : bin_type
 @export var level : Node
+
+enum bin_type {RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS}
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

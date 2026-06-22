@@ -2,30 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cw7o5qxi6dkf4" path="res://scripts/spawner.gd" id="1_2vbf6"]
 [ext_resource type="PackedScene" uid="uid://bialkiujn08if" path="res://scenes/item.tscn" id="2_ik2nu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ik2nu"]
-albedo_color = Color(1, 0.16862746, 0.15686275, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tx2ig"]
-material = SubResource("StandardMaterial3D_ik2nu")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wbs5"]
-albedo_color = Color(0.28627452, 1, 0.23529412, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_30a77"]
-material = SubResource("StandardMaterial3D_4wbs5")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bbd6"]
-albedo_color = Color(0.09411765, 0.7176471, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_cmhla"]
-material = SubResource("StandardMaterial3D_6bbd6")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5s3f"]
-albedo_color = Color(1, 0.8901961, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_e3f8v"]
-material = SubResource("StandardMaterial3D_p5s3f")
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="3_6bbd6"]
+[ext_resource type="Resource" uid="uid://dq2n5ht73vk2h" path="res://assets/items/milk_bottle.tres" id="4_cmhla"]
+[ext_resource type="Resource" uid="uid://bpwxgrb8m6sye" path="res://assets/items/banana.tres" id="5_cmhla"]
+[ext_resource type="Resource" uid="uid://b1lsehx2hwrxr" path="res://assets/items/new_resource.tres" id="6_4wbs5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ik2nu"]
 size = Vector3(3.6, 1, 3.6)
@@ -34,8 +14,8 @@ size = Vector3(3.6, 1, 3.6)
 script = ExtResource("1_2vbf6")
 timer = NodePath("Timer")
 item_scene = ExtResource("2_ik2nu")
-mesh = Array[Mesh]([SubResource("BoxMesh_tx2ig"), SubResource("BoxMesh_30a77"), SubResource("BoxMesh_cmhla"), SubResource("BoxMesh_e3f8v")])
-bin_num = Array[int]([0, 1, 2, 3])
+items = Array[ExtResource("3_6bbd6")]([ExtResource("4_cmhla"), ExtResource("5_cmhla")])
+test = ExtResource("6_4wbs5")
 
 [node name="Timer" type="Timer" parent="." unique_id=1582779946]
 autostart = true

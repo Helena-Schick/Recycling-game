@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1o047ea2cv2a"]
 
 [ext_resource type="Script" uid="uid://btrik0gpvt0xv" path="res://scripts/settings.gd" id="1_05p07"]
-[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/material2.tres" id="2_cr101"]
+[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="2_cr101"]
 
 [node name="Control" type="Control" unique_id=476314100 node_paths=PackedStringArray("colour_picker")]
 process_mode = 2

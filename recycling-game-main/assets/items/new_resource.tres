@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b1lsehx2hwrxr"]
+
+[ext_resource type="ArrayMesh" uid="uid://cxwji4ornb02" path="res://assets/meshes/MilkCarton.res" id="1_1khu0"]
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_uxvtx"]
+
+[resource]
+script = ExtResource("1_uxvtx")
+mesh = ExtResource("1_1khu0")
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

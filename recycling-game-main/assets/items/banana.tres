@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bpwxgrb8m6sye"]
+
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_a43qe"]
+[ext_resource type="ArrayMesh" uid="uid://kjixj7v47oqn" path="res://assets/meshes/Banana_Mesh.res" id="1_ocqms"]
+
+[resource]
+script = ExtResource("1_a43qe")
+bin = 1
+mesh = ExtResource("1_ocqms")
+scale = Vector3(0.3, 0.3, 0.3)
+rotation = Vector3(1.571, 1.571, 0)
+height = 0.45
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

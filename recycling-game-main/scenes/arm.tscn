@@ -1,13 +1,12 @@
 [gd_scene format=4 uid="uid://dt16yelomrg8b"]
 
-[ext_resource type="PackedScene" uid="uid://css1foio7bk3r" path="res://assets/arm.glb" id="1_muf2m"]
+[ext_resource type="PackedScene" uid="uid://css1foio7bk3r" path="res://assets/arm_resources/arm.glb" id="1_muf2m"]
 [ext_resource type="Script" uid="uid://ggm6am18uchd" path="res://scripts/arm.gd" id="2_dy6di"]
-[ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/material.tres" id="3_dy6di"]
-[ext_resource type="ArrayMesh" uid="uid://cxkekd8th5xiv" path="res://assets/arm_meshes_Cylinder_019.res" id="4_gowua"]
-[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/material2.tres" id="5_gowua"]
-[ext_resource type="ArrayMesh" uid="uid://b76fv3cx332q3" path="res://assets/arm_meshes_Cylinder_010.res" id="6_jslam"]
-[ext_resource type="ArrayMesh" uid="uid://b1fc2kxf1x6t" path="res://assets/arm_meshes_Cylinder_009.res" id="7_o10co"]
-[ext_resource type="ArrayMesh" uid="uid://cgnifnuiup1fq" path="res://assets/arm_meshes_Cylinder_006.res" id="8_hhxxg"]
+[ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/arm_resources/material.tres" id="3_dy6di"]
+[ext_resource type="ArrayMesh" uid="uid://cxkekd8th5xiv" path="res://assets/arm_resources/arm_meshes_Cylinder_019.res" id="4_gowua"]
+[ext_resource type="ArrayMesh" uid="uid://b76fv3cx332q3" path="res://assets/arm_resources/arm_meshes_Cylinder_010.res" id="6_jslam"]
+[ext_resource type="ArrayMesh" uid="uid://b1fc2kxf1x6t" path="res://assets/arm_resources/arm_meshes_Cylinder_009.res" id="7_o10co"]
+[ext_resource type="ArrayMesh" uid="uid://cgnifnuiup1fq" path="res://assets/arm_resources/arm_meshes_Cylinder_006.res" id="8_hhxxg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l675"]
 
@@ -157,7 +156,7 @@ _data = {
 &"open_claw": SubResource("Animation_o10co")
 }
 
-[node name="arm" unique_id=1650899576 node_paths=PackedStringArray("ik", "rest", "marker", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
+[node name="arm" unique_id=1757234389 node_paths=PackedStringArray("ik", "rest", "marker", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
 script = ExtResource("2_dy6di")
 ik = NodePath("Armature/Skeleton3D/SkeletonIK3D")
 rest = NodePath("rest_position_marker")
@@ -166,48 +165,46 @@ armature = NodePath("Armature")
 animation = NodePath("AnimationPlayer")
 ik_target = NodePath("Armature/ik_target")
 
-[node name="Cylinder_011" parent="Armature/Skeleton3D/Bone_007" parent_id_path=PackedInt32Array(1874056744) index="0" unique_id=836250087]
+[node name="Cylinder_011" parent="Armature/Skeleton3D/Bone_007" parent_id_path=PackedInt32Array(65538900) index="0" unique_id=1470855502]
 transform = Transform3D(-0.23148102, -7.4777724e-08, 0.0017817864, -0.0017817864, -1.0285764e-07, -0.23148102, 2.0343768e-08, -0.85986924, 2.753483e-08, -0.002724409, -0.05196953, -6.8291595e-11)
 surface_material_override/0 = ExtResource("3_dy6di")
 
-[node name="Cylinder_012" parent="Armature/Skeleton3D/Bone_006" parent_id_path=PackedInt32Array(1971973165) index="0" unique_id=2040033975]
+[node name="Cylinder_012" parent="Armature/Skeleton3D/Bone_006" parent_id_path=PackedInt32Array(387821950) index="0" unique_id=2055696545]
 transform = Transform3D(-0.2314879, -1.2983665e-07, 1.5278749e-15, 0, -3.758608e-08, -0.2314879, 3.49537e-08, -0.85986924, 1.0118658e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_3j5xu")
 surface_material_override/0 = ExtResource("3_dy6di")
 
-[node name="Cylinder_010" parent="Armature/Skeleton3D/Bone_009" parent_id_path=PackedInt32Array(1284969678) index="0" unique_id=589964670]
+[node name="Cylinder_010" parent="Armature/Skeleton3D/Bone_009" parent_id_path=PackedInt32Array(1589320960) index="0" unique_id=1987929591]
 transform = Transform3D(-0.23148105, -7.9191136e-07, 0.0017817867, -0.0017817867, -2.0542598e-07, -0.23148105, 2.1361213e-07, -0.85986936, 5.3660713e-08, -0.0026626587, -0.058052, 2.4122853e-09)
 surface_material_override/0 = ExtResource("3_dy6di")
 
-[node name="Cylinder_009" parent="Armature/Skeleton3D/Bone_008" parent_id_path=PackedInt32Array(2118503921) index="0" unique_id=50937851]
+[node name="Cylinder_009" parent="Armature/Skeleton3D/Bone_008" parent_id_path=PackedInt32Array(637464403) index="0" unique_id=1608888041]
 transform = Transform3D(-0.2314879, 7.517217e-08, 1.0118658e-08, -1.0118658e-08, 1.6429399e-15, -0.23148791, -2.0237316e-08, -0.85986936, 4.423006e-16, 0, 0, 0)
 surface_material_override/0 = ExtResource("3_dy6di")
 
-[node name="Cylinder_004" parent="Armature/Skeleton3D/Bone_004" parent_id_path=PackedInt32Array(1847726246) index="0" unique_id=200540141]
+[node name="Cylinder_004" parent="Armature/Skeleton3D/Bone_004" parent_id_path=PackedInt32Array(266419615) index="0" unique_id=87009344]
 mesh = ExtResource("4_gowua")
 surface_material_override/0 = ExtResource("3_dy6di")
-surface_material_override/1 = ExtResource("5_gowua")
 
-[node name="Cylinder_005" parent="Armature/Skeleton3D/Bone_003" parent_id_path=PackedInt32Array(2143722645) index="0" unique_id=1436803738]
+[node name="Cylinder_005" parent="Armature/Skeleton3D/Bone_003" parent_id_path=PackedInt32Array(1863497561) index="0" unique_id=839811356]
 mesh = ExtResource("6_jslam")
 surface_material_override/0 = ExtResource("3_dy6di")
-surface_material_override/1 = ExtResource("5_gowua")
 
-[node name="Cylinder_001" parent="Armature/Skeleton3D/Bone_002" parent_id_path=PackedInt32Array(830450915) index="0" unique_id=865716786]
+[node name="Cylinder_001" parent="Armature/Skeleton3D/Bone_002" parent_id_path=PackedInt32Array(1878067496) index="0" unique_id=1657234069]
 mesh = ExtResource("7_o10co")
 
-[node name="Cylinder_003" parent="Armature/Skeleton3D/Bone_001" parent_id_path=PackedInt32Array(1654227823) index="0" unique_id=430056658]
+[node name="Cylinder_003" parent="Armature/Skeleton3D/Bone_001" parent_id_path=PackedInt32Array(364522117) index="0" unique_id=1221630480]
 mesh = ExtResource("8_hhxxg")
 
-[node name="Cylinder_002" parent="Armature/Skeleton3D/Bone" parent_id_path=PackedInt32Array(899224055) index="0" unique_id=467935910]
+[node name="Cylinder_002" parent="Armature/Skeleton3D/Bone" parent_id_path=PackedInt32Array(213678076) index="0" unique_id=2022700755]
 surface_material_override/0 = ExtResource("3_dy6di")
 
-[node name="SkeletonIK3D" type="SkeletonIK3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1773289044) index="9" unique_id=203507864]
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(1556967168) index="9" unique_id=203507864]
 root_bone = &"Bone.001"
 tip_bone = &"up"
 target_node = NodePath("../../ik_target")
 
-[node name="ik_target" type="Marker3D" parent="Armature" parent_id_path=PackedInt32Array(2097464525) index="1" unique_id=400220375]
+[node name="ik_target" type="Marker3D" parent="Armature" parent_id_path=PackedInt32Array(926144011) index="1" unique_id=400220375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
 
 [node name="Marker3D" type="Marker3D" parent="." index="1" unique_id=2028991733]

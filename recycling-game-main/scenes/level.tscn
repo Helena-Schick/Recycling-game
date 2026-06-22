@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://c1o047ea2cv2a" path="res://scenes/settings_menu.tscn" id="3_2r41h"]
-[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/material2.tres" id="4_klq6b"]
+[ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
@@ -52,7 +52,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1075231217]
 environment = SubResource("Environment_w8frs")
 
-[node name="arm" parent="." unique_id=453327866 node_paths=PackedStringArray("level", "bin_markers") instance=ExtResource("1_2q6dc")]
+[node name="arm" parent="." unique_id=1650899576 node_paths=PackedStringArray("level", "bin_markers") instance=ExtResource("1_2q6dc")]
 level = NodePath("..")
 bin_markers = [NodePath("../bin/Marker3D"), NodePath("../bin2/Marker3D"), NodePath("../bin3/Marker3D"), NodePath("../bin4/Marker3D")]
 

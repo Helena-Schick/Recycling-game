@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://bq54vu85g7ksd" path="res://scripts/item.gd" id="1_4gq7n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gq7n"]
+resource_local_to_scene = true
 
-[node name="item" type="RigidBody3D" unique_id=1152029425 node_paths=PackedStringArray("mesh_instance")]
+[node name="item" type="RigidBody3D" unique_id=1152029425 node_paths=PackedStringArray("mesh_instance", "collision_shape")]
 mass = 3.0
 script = ExtResource("1_4gq7n")
 mesh_instance = NodePath("MeshInstance3D")
+collision_shape = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=563066937]
 shape = SubResource("BoxShape3D_4gq7n")

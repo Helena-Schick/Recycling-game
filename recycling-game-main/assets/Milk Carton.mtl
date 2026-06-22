@@ -1,0 +1,19 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 26.10.2018 23:24:39
+
+newmtl MilkCartn
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka N:\M n B\_MESH\M mesh\Milk Carton\MilkCartonAlbedo.png
+	map_Kd N:\M n B\_MESH\M mesh\Milk Carton\MilkCartonAlbedo.png
+	map_Ks N:\M n B\_MESH\M mesh\Milk Carton\MilkCartonRough.png
+	map_bump -bm 0.3000 Map__4_Normal_Bump.png
+	map_refl N:\M n B\_MESH\M mesh\Milk Carton\MilkCartonMetal.png
