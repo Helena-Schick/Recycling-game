@@ -32,7 +32,7 @@ albedo_color = Color(0.42352942, 0.89411765, 1, 0.4745098)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
 albedo_color = Color(1, 0.8666667, 0, 0.5058824)
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "conveyor", "camera_a", "camera_b", "pause_menu", "score_display")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "conveyor", "camera_a", "camera_b", "pause_menu", "score_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 conveyor = NodePath("conveyer")
@@ -43,6 +43,7 @@ score_display = NodePath("CanvasLayer/score_label")
 arm_material = ExtResource("4_klq6b")
 settings_menu = ExtResource("3_2r41h")
 main_menu_scene = ExtResource("2_ppgk2")
+feedback_display = NodePath("CanvasLayer/feedback_display")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.8943055, -0.41961607, 0.15537049, 0.23946981, -0.15551612, 0.95836776, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
@@ -171,7 +172,38 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Exit to Menu"
 
+[node name="feedback_display" type="Label" parent="CanvasLayer" unique_id=1579998061]
+process_mode = 2
+visible = false
+z_index = 1
+offset_left = 79.0
+offset_top = 489.0
+offset_right = 1067.0
+offset_bottom = 601.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "hirewp frf3i hf43qoij4q hfuiwifnrqp fjeioqpfigetery oruqho gerfhr hfrewfh ryghuygf ygue "
+autowrap_mode = 2
+
+[node name="color_rect" type="ColorRect" parent="CanvasLayer/feedback_display" unique_id=517300188]
+z_index = -1
+layout_mode = 0
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 1013.0
+offset_bottom = 130.0
+color = Color(0.8741615, 0.8741615, 0.8741615, 0.5372549)
+
+[node name="close" type="Button" parent="CanvasLayer/feedback_display/color_rect" unique_id=1576007977]
+layout_mode = 0
+offset_left = 969.0
+offset_top = 96.0
+offset_right = 1022.0
+offset_bottom = 139.0
+text = "OK"
+
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="open_pause_menu"]
-[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/feedback_display/color_rect/close" to="." method="_resume_game"]

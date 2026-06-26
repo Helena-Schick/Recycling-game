@@ -12,10 +12,10 @@ extends Node3D
 const SPEED : float = 15.0
 const Y_MOVEMENT_SCALE : int = 3
 
-var target_pos
-var target_item
-var grabbed_item
-var target_bin : int = 0
+var target_pos ## the position the arm is moving to
+var target_item ## the item or node the arm is moving to
+var grabbed_item ## the item currently being held by the arm, or null if no item
+var target_bin : int ## the bin the arm is moving to, or null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,9 +45,8 @@ func _process(delta: float) -> void:
 			_reached_target()
 	
 	# move and rotate the arm to the position of the marker
-	ik_target.position.y = marker.position.y
-	ik_target.position.x = sqrt(pow(marker.position.x, 2) + pow(marker.position.z, 2))
 	armature.rotation.y = atan2(-marker.position.z, marker.position.x)
+	ik_target.global_position = marker.global_position
 
 
 func _reached_target() -> void:
@@ -56,7 +55,7 @@ func _reached_target() -> void:
 		target_item.reparent(marker, true)
 		grabbed_item = target_item
 		target_item.sleeping = true
-		target_item = bin_markers[target_bin] # new target
+		target_item = bin_markers[target_bin] # move to selected bin
 		animation.play("close_claw")
 	
 	# drop item in bin
@@ -64,5 +63,5 @@ func _reached_target() -> void:
 		grabbed_item.reparent(level, true)
 		grabbed_item.sleeping = false
 		grabbed_item = null
-		target_item = rest # new target
+		target_item = rest # move to rest position
 		animation.play("open_claw")

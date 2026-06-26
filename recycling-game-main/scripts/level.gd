@@ -9,6 +9,7 @@ extends Node3D
 @export var arm_material : Resource ##The material resource for the arm
 @export var settings_menu : PackedScene ##The scene for the settings menu
 @export var main_menu_scene : PackedScene ##The main menu packed scene
+@export var feedback_display : Node ## the label that gives the feedback to the player
 
 var score : int = 0
 var current_camera : int = 0
@@ -51,11 +52,15 @@ func _move_item(bin_number):
 func open_pause_menu() -> void:
 	pause_menu.visible = true
 	get_tree().paused = true
+	if feedback_display.visible:
+		feedback_display.visible = false
 
 
-func _on_resume_pressed() -> void:
+func _resume_game() -> void:
 	get_tree().paused = false
 	pause_menu.visible = false
+	if feedback_display.visible:
+		feedback_display.visible = false
 
 
 func _on_exit_pressed() -> void:
@@ -75,3 +80,13 @@ func _on_settings_pressed() -> void:
 	pause_menu.visible = false
 	settings.main = self
 	add_child(settings)
+
+	
+func show_feedback(text : String) -> void:
+	feedback_display.visible = true
+	get_tree().paused = true
+	feedback_display.text = text
+	
+	
+	
+	
