@@ -18,6 +18,11 @@ config/icon="res://assets/icon.svg"
 
 Global="*uid://c7oxnneh3psvk"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 rubbish_items=""

@@ -1,20 +1,22 @@
 extends Node3D
 
-@export var arm : Node ##The mechanical arm node
-@export var conveyor : Node ##The conveyer belt node 
-@export var camera_a : Node ##The main camera 
-@export var camera_b : Node ##The second camera to switch to
-@export var pause_menu : Node ##The pause menu canvas layer
-@export var score_display : Node ##The label that displays the player's score
-@export var arm_material : Resource ##The material resource for the arm
-@export var settings_menu : PackedScene ##The scene for the settings menu
-@export var main_menu_scene : PackedScene ##The main menu packed scene
-@export var feedback_display : Node ## the label that gives the feedback to the player
+@export var arm : Node ## the mechanical arm node
+@export var conveyor : Node ## the conveyer belt node 
+@export var camera_a : Node ## the main camera 
+@export var camera_b : Node ## the second camera to switch to
+@export var pause_menu : Node ## the pause menu canvas layer
+@export var pause_button : Node ## the button that pauses the game
+@export var score_display : Node ## the label that displays the player's score
+@export var feedback_display : Node ## the label that displays feedback to the player
+@export var arm_material : Resource ## the material resource for the arm
+@export var settings_menu : PackedScene ## the scene for the settings menu
+@export var main_menu_scene : PackedScene ## the main menu packed scene
 
 var score : int = 0
 var current_camera : int = 0
 
 
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_data()
 	arm_material.albedo_color = Global.colour
@@ -33,11 +35,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 	
 	# switch the active camera
 	if Input.is_action_just_pressed("ui_spacebar"):
-		current_camera = (current_camera + 1) % 2
-		if current_camera == 0:
-			camera_a.make_current()
-		else:
-			camera_b.make_current()
+		if not get_tree().paused:
+			current_camera = (current_camera + 1) % 2
+			if current_camera == 0:
+				camera_a.make_current()
+			else:
+				camera_b.make_current()
 
 
 ## makes the arm move an item to a specific bin
@@ -49,25 +52,31 @@ func _move_item(bin_number):
 			arm.target_bin = bin_number
 
 
-func open_pause_menu() -> void:
+## pauses the game and opens the pause menu
+func _pause_game() -> void:
 	pause_menu.visible = true
 	get_tree().paused = true
+	pause_button.visible = false
 	if feedback_display.visible:
 		feedback_display.visible = false
 
 
+## unpauses the game and closes the pause menu
 func _resume_game() -> void:
 	get_tree().paused = false
 	pause_menu.visible = false
+	pause_button.visible = true
 	if feedback_display.visible:
 		feedback_display.visible = false
 
 
+## return to the main menu
 func _on_exit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(main_menu_scene)
 
 
+## increases or decreases the player's score by a given value
 func change_score(value) -> void:
 	score += value
 	if score <= 0:
@@ -81,7 +90,7 @@ func _on_settings_pressed() -> void:
 	settings.main = self
 	add_child(settings)
 
-	
+
 func show_feedback(text : String) -> void:
 	feedback_display.visible = true
 	get_tree().paused = true

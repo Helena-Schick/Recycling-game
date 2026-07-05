@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dthquj581k1b8" path="res://scripts/conveyer.gd" id="1_rntgv"]
 [ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="2_7cd8w"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_paugm"]
+albedo_color = Color(0.42903125, 0.42903125, 0.42903125, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7cd8w"]
 size = Vector3(5, 0.5, 40)
 
@@ -10,7 +13,9 @@ size = Vector3(5, 0.5, 40)
 size = Vector3(5, 0.1, 40)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cd8w"]
-albedo_color = Color(0.41960785, 1, 0.40392157, 1)
+transparency = 1
+albedo_color = Color(0.5541602, 0.7572565, 0.4734717, 1)
+metallic = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28sha"]
 size = Vector3(5.1, 0.2, 8)
@@ -22,6 +27,7 @@ conveyor_area = NodePath("conveyer_area")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1681090691]
 size = Vector3(5, 0.5, 40)
+material = SubResource("StandardMaterial3D_paugm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=995458812]
 
