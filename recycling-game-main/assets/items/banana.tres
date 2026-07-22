@@ -9,6 +9,6 @@ bin = 1
 mesh = ExtResource("1_ocqms")
 scale = Vector3(0.3, 0.3, 0.3)
 rotation = Vector3(1.571, 1.571, 0)
-height = 0.45
+height = 0.2
 text = "Fruit and fruit peels are food waste and should go in the compost bin."
 metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

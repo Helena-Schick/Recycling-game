@@ -7,7 +7,7 @@ extends Node3D
 @export var armature : Node ## the armature for the arm
 @export var animation : Node ## the animation player for the claw
 @export var ik_target : Node ## the target for inverse kinematics
-@export var bin_markers : Array[Marker3D] ## an array of marker3Ds for the bins 
+@export var bin_markers : Array[Marker3D] ## an array of markers for the bins 
 
 const SPEED : float = 15.0
 const Y_MOVEMENT_SCALE : int = 3
@@ -15,7 +15,7 @@ const Y_MOVEMENT_SCALE : int = 3
 var target_pos ## the position the arm is moving to
 var target_item ## the item or node the arm is moving to
 var grabbed_item ## the item currently being held by the arm, or null if no item
-var target_bin : int ## the bin the arm is moving to, or null
+var target_bin : int ## the bin the arm is moving to
 
 
 # Called when the node enters the scene tree for the first time.

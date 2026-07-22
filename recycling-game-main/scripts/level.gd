@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var arm : Node ## the mechanical arm node
+@export var timer : Node ## the timer for how long to show feedback for
 @export var conveyor : Node ## the conveyer belt node 
 @export var camera_a : Node ## the main camera 
 @export var camera_b : Node ## the second camera to switch to
@@ -53,7 +54,7 @@ func _move_item(bin_number):
 
 
 ## pauses the game and opens the pause menu
-func _pause_game() -> void:
+func pause_game() -> void:
 	pause_menu.visible = true
 	get_tree().paused = true
 	pause_button.visible = false
@@ -93,9 +94,14 @@ func _on_settings_pressed() -> void:
 
 func show_feedback(text : String) -> void:
 	feedback_display.visible = true
-	get_tree().paused = true
 	feedback_display.text = text
-	
-	
-	
-	
+	timer.start()
+
+
+func _on_end_body_entered(body: Node3D) -> void:
+	body.call_deferred("queue_free")
+	change_score(-1)
+
+
+func _on_timer_timeout() -> void:
+	feedback_display.visible = false

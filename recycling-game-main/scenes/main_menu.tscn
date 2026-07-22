@@ -38,10 +38,16 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Play"
 
+[node name="Credits" type="Button" parent="VBoxContainer" unique_id=531404077]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Credits"
+
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=502594804]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

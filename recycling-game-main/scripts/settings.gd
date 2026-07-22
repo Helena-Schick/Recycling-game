@@ -11,7 +11,7 @@ func _ready() -> void:
 
 ## closes the settings menu
 func _on_exit_pressed() -> void:
-	main.open_pause_menu()
+	main.pause_game()
 	call_deferred("queue_free")
 
 

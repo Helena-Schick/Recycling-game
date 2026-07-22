@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dbyacd2im7x4v"]
+
+[ext_resource type="Script" uid="uid://jytolpm5sor1" path="res://scripts/credits.gd" id="1_0bpdh"]
+[ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_2ckv8"]
+
+[node name="Control" type="Control" unique_id=630690363]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bpdh")
+menu = ExtResource("2_2ckv8")
+
+[node name="Exit" type="Button" parent="." unique_id=771426866]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 55.0
+offset_right = 1097.0
+offset_bottom = 86.0
+text = "Close"
+
+[node name="Label" type="Label" parent="." unique_id=95106321]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 77.0
+offset_right = 624.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+
+[node name="Label2" type="Label" parent="." unique_id=322989990]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 186.0
+offset_right = 999.0
+offset_bottom = 450.0
+text = "\"Tin can 3D pack\" (https://sketchfab.com/3d-models/tin-can-3d-pack-19dba56076944c3f89df1660f90afcc4) by Subdivision Productions (https://sketchfab.com/SubdivisionProductions) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
