@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://btrik0gpvt0xv" path="res://scripts/settings.gd" id="1_05p07"]
 [ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="2_cr101"]
 
-[node name="Control" type="Control" unique_id=476314100 node_paths=PackedStringArray("colour_picker")]
+[node name="Control" type="Control" unique_id=476314100 node_paths=PackedStringArray("colour_picker", "sound_toggle", "music_toggle")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -14,6 +14,8 @@ grow_vertical = 2
 script = ExtResource("1_05p07")
 arm_material = ExtResource("2_cr101")
 colour_picker = NodePath("ColorPickerButton")
+sound_toggle = NodePath("sound")
+music_toggle = NodePath("music")
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=1319627053]
 layout_mode = 0
@@ -35,11 +37,12 @@ text = "Exit
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="." unique_id=302687723]
-layout_mode = 0
-anchor_left = 0.2847222
-anchor_top = 0.41666666
-anchor_right = 0.37586805
-anchor_bottom = 0.4537037
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28819445
+anchor_top = 0.41975307
+anchor_right = 0.3793403
+anchor_bottom = 0.45679012
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Arm Colour"
 metadata/_edit_use_anchors_ = true
@@ -54,5 +57,26 @@ anchor_bottom = 0.4691358
 color = Color(0.13333334, 0.8352941, 1, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="sound" type="CheckButton" parent="." unique_id=1950168183]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 317.0
+offset_right = 474.0
+offset_bottom = 348.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sound"
+
+[node name="music" type="CheckButton" parent="." unique_id=1093428819]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 365.0
+offset_right = 475.0
+offset_bottom = 396.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Music
+"
+
 [connection signal="pressed" from="Button" to="." method="_on_exit_pressed"]
 [connection signal="color_changed" from="ColorPickerButton" to="." method="_set_colour"]
+[connection signal="toggled" from="sound" to="." method="_on_sound_toggled"]
+[connection signal="toggled" from="music" to="." method="_on_music_toggled"]

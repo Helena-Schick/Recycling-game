@@ -301,7 +301,7 @@ albedo_color = Color(0.22959313, 0.22959328, 0.22959322, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b121j"]
 size = Vector3(6, 1, 2)
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "conveyor", "camera_a", "camera_b", "pause_menu", "pause_button", "score_display", "feedback_display")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "conveyor", "camera_a", "camera_b", "pause_menu", "pause_button", "time_display", "score_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("Timer")
@@ -310,6 +310,7 @@ camera_a = NodePath("Camera A")
 camera_b = NodePath("Camera B")
 pause_menu = NodePath("CanvasLayer/pause_menu")
 pause_button = NodePath("CanvasLayer/pause")
+time_display = NodePath("CanvasLayer/time")
 score_display = NodePath("CanvasLayer/score_label")
 feedback_display = NodePath("CanvasLayer/feedback_display")
 arm_material = ExtResource("4_klq6b")
@@ -320,7 +321,7 @@ main_menu_scene = ExtResource("2_ppgk2")
 environment = SubResource("Environment_8c41q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
-transform = Transform3D(-0.89933985, -0.29323465, -0.32434744, -0.21980894, -0.33804786, 0.9151, -0.37798393, 0.8942802, 0.23956433, 0, 9.077105, 9.468091)
+transform = Transform3D(-0.89933985, -0.29323465, -0.32434744, -0.21980894, -0.33804786, 0.9151, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
 light_color = Color(1, 1, 0.8392157, 1)
 shadow_enabled = true
 
@@ -487,7 +488,7 @@ anchor_left = 0.035590276
 anchor_top = 0.047839507
 anchor_right = 0.7821181
 anchor_bottom = 0.13117284
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 15
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
@@ -504,7 +505,29 @@ offset_left = 54.0
 offset_top = 464.99997
 offset_right = 54.00006
 offset_bottom = 464.99997
-color = Color(1, 0.6893853, 0.668332, 0.76862746)
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/feedback_display" unique_id=2131225006]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.013953488
+anchor_top = -0.12962963
+anchor_right = 1.0255814
+anchor_bottom = 1.0925926
+offset_right = 6.1035156e-05
+color = Color(0.36810192, 0.36810198, 0.36810192, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="Label" parent="CanvasLayer" unique_id=1919672654]
+anchors_preset = -1
+anchor_left = 0.9079861
+anchor_top = 0.91512346
+anchor_right = 1.0
+anchor_bottom = 0.9722222
+theme_override_font_sizes/font_size = 20
+text = "00:00"
 metadata/_edit_use_anchors_ = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=119006520]
@@ -530,9 +553,13 @@ shape = SubResource("BoxShape3D_b121j")
 wait_time = 2.0
 one_shot = true
 
+[node name="level_timer" type="Timer" parent="." unique_id=532932103]
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]

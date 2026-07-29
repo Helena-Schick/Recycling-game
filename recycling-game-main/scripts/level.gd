@@ -7,20 +7,23 @@ extends Node3D
 @export var camera_b : Node ## the second camera to switch to
 @export var pause_menu : Node ## the pause menu canvas layer
 @export var pause_button : Node ## the button that pauses the game
+@export var time_display : Node ## shows how long the user has been playing the level for
 @export var score_display : Node ## the label that displays the player's score
 @export var feedback_display : Node ## the label that displays feedback to the player
 @export var arm_material : Resource ## the material resource for the arm
 @export var settings_menu : PackedScene ## the scene for the settings menu
 @export var main_menu_scene : PackedScene ## the main menu packed scene
 
+
 var score : int = 0
 var current_camera : int = 0
+var time : int = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_data()
-	arm_material.albedo_color = Global.colour
+	arm_material.albedo_color = Global.settings["colour"]
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -34,7 +37,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_4"):
 		_move_item(3)
 	
-	# switch the active camera
+	# switch the active camera when the space bar is pressed
 	if Input.is_action_just_pressed("ui_spacebar"):
 		if not get_tree().paused:
 			current_camera = (current_camera + 1) % 2
@@ -80,7 +83,7 @@ func _on_exit_pressed() -> void:
 ## increases or decreases the player's score by a given value
 func change_score(value) -> void:
 	score += value
-	if score <= 0:
+	if score < 0:
 		score = 0
 	score_display.text = "SCORE: " + str(score)
 
@@ -105,3 +108,20 @@ func _on_end_body_entered(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
 	feedback_display.visible = false
+
+
+## increases the time display
+func _on_level_timer_timeout() -> void:
+	time += 1
+	
+	# format time
+	var minutes = str(floor(time / 60))
+	var seconds = str(time % 60)
+	if len(seconds) == 1:
+		seconds = "0" + seconds
+	if len(minutes) == 1:
+		minutes = "0" + minutes
+		
+	time_display.text = minutes + ":" + seconds
+	
+	

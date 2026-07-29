@@ -2,21 +2,35 @@ extends Control
 
 @export var arm_material : Material 
 @export var colour_picker : Node 
+@export var sound_toggle : Node
+@export var music_toggle : Node
+
 var main : Node
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	colour_picker.color = Global.colour
+	colour_picker.color = Global.settings["colour"]
+	sound_toggle.button_pressed = Global.settings["sound"]
+	music_toggle.button_pressed = Global.settings["music"]
 
 
 ## closes the settings menu
 func _on_exit_pressed() -> void:
 	main.pause_game()
 	call_deferred("queue_free")
-
+	Global.save_data()
+	
 
 ## changes and saves the colour of the arm
 func _set_colour(color: Color) -> void:
 	arm_material.albedo_color = color
-	Global.colour = color
-	Global.save_data()
+	Global.settings["colour"] = color
+
+
+func _on_sound_toggled(toggled_on: bool) -> void:
+	Global.settings["sound"] = toggled_on
+
+
+func _on_music_toggled(toggled_on: bool) -> void:
+	Global.settings["music"] = toggled_on

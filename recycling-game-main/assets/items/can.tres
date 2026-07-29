@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_t8tt0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8tt0"]
+albedo_color = Color(0.78860694, 0.78860694, 0.7886069, 1)
 metallic = 1.0
-roughness = 0.45
+roughness = 0.37
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gwdrk"]
 _surfaces = [{
