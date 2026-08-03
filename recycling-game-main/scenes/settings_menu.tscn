@@ -23,7 +23,7 @@ anchor_left = 0.16840278
 anchor_top = 0.19753087
 anchor_right = 0.8333333
 anchor_bottom = 0.81635803
-color = Color(1, 1, 1, 0.47058824)
+color = Color(0.8039216, 0.8039216, 0.8039216, 0.78431374)
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="." unique_id=1017718568]
@@ -64,6 +64,10 @@ offset_top = 317.0
 offset_right = 474.0
 offset_bottom = 348.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 text = "Sound"
 
 [node name="music" type="CheckButton" parent="." unique_id=1093428819]
@@ -73,6 +77,10 @@ offset_top = 365.0
 offset_right = 475.0
 offset_bottom = 396.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 text = "Music
 "
 
