@@ -1,6 +1,6 @@
 extends Label
 
-@export var level : Node
+@export var level: Node
 
 
 func _unhandled_input(event: InputEvent) -> void:

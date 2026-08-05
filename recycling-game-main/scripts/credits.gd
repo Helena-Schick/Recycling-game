@@ -1,5 +1,5 @@
 extends Control
-@export var menu : PackedScene
+@export var menu: PackedScene
 
 
 func _on_exit_pressed() -> void:

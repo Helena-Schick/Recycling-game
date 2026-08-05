@@ -2,21 +2,25 @@ extends Node3D
 
 enum bin_type {RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS}
 
-@export var mesh_instance : Node
-@export var collision_shape : Node
-@export var data : ItemData
+@export var mesh_instance: Node
+@export var collision_shape: Node
+@export var data: ItemData ## The data for the item
 
-var bin : int
-var mesh : Resource
-var size : Vector3
-var text : String
+const ANGLE: float = PI / 4
 
-const ANGLE = PI / 4
+var bin: int
+var mesh: Resource
+var size: Vector3
+var text: String
 
+
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mesh_instance.mesh = data.mesh
 	bin = data.bin
 	text = data.text
+	
+	# Set size and rotation
 	mesh_instance.rotation = data.rotation
 	mesh_instance.rotation.y += randf_range(-ANGLE, ANGLE)
 	mesh_instance.scale = data.scale

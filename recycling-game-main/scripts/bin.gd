@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var bin_number : bin_type
-@export var level : Node
+@export var bin_number: bin_type
+@export var level: Node
 
 enum bin_type {RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS}
 
