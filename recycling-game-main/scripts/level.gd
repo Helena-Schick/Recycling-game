@@ -18,16 +18,20 @@ extends Node3D
 enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
 const SCORE_TEXT: String = "SCORE: "
+const CAMERAS: int = 3 ## The number of cameras
 
 var score: int = 0
 var current_camera: int = 0
 var time: int = 0
+var camera_c: Node
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_data()
 	arm_material.albedo_color = Global.settings["colour"]
+	camera_c = arm.camera_c
+	camera_a.make_current()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -44,21 +48,22 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Switch the active camera when the space bar is pressed
 	elif event.is_action_pressed("ui_spacebar"):
 		if not get_tree().paused:
-			current_camera = (current_camera + 1) % 2
+			current_camera = (current_camera + 1) % CAMERAS
 			if current_camera == 0:
 				camera_a.make_current()
-			else:
+			elif current_camera == 1:
 				camera_b.make_current()
-
+			else:
+				camera_c.make_current()
 
 
 ## Makes the arm move an item to a specific bin
-func _move_item(bin_number: bin_type):
+func _move_item(bin: bin_type):
 	var item = conveyor.grab_item()
 	if item:
 		if item.is_in_group("rubbish_items") and not arm.grabbed_item:
 			arm.target_item = item
-			arm.target_bin = bin_number
+			arm.target_bin = bin
 
 
 ## Pauses the game and opens the pause menu
@@ -86,7 +91,7 @@ func _on_exit_pressed() -> void:
 
 
 ## Increases or decreases the player's score by a given value
-func change_score(value) -> void:
+func change_score(value: int) -> void:
 	score += value
 	if score < 0:
 		score = 0
@@ -112,12 +117,14 @@ func show_feedback(text: String) -> void:
 	timer.start()
 
 
+# Decreases score when an item falls off the end of the conveyer
 func _on_end_body_entered(body: Node3D) -> void:
 	body.call_deferred("queue_free")
 	change_score(-ITEM_VALUE)
 
 
-func _on_timer_timeout() -> void:
+# Makes the feedback display hide when the timer goes ends
+func _on_feedback_timer_timeout() -> void:
 	feedback_display.visible = false
 
 

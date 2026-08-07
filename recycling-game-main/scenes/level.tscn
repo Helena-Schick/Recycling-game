@@ -392,7 +392,7 @@ _data = {
 [node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "pause_button", "time_display", "score_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
-timer = NodePath("Timer")
+timer = NodePath("feedback_timer")
 conveyor = NodePath("conveyer")
 camera_a = NodePath("Camera A")
 camera_b = NodePath("Camera B")
@@ -423,7 +423,7 @@ transform = Transform3D(0.5576727, 0.22414061, -0.79922605, 1.180335e-08, 0.9628
 fov = 65.0
 
 [node name="Camera B" type="Camera3D" parent="." unique_id=1779872693]
-transform = Transform3D(0.9554897, 0.07037319, -0.2865083, 3.0473528e-09, 0.97113425, 0.23853347, 0.29502434, -0.22791629, 0.9279088, 3.5455012, 9.273868, 12.106898)
+transform = Transform3D(0.95548975, 0.07037319, -0.2865083, 3.047353e-09, 0.9711343, 0.2385335, 0.29502437, -0.2279163, 0.92790884, 3.5455012, 8.0666685, 12.106898)
 
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
@@ -630,8 +630,8 @@ spot_range = 34.179
 spot_angle = 50.29
 
 [node name="floor" type="CSGBox3D" parent="." unique_id=1202643830]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.915834, -1.3086364, -10.980909)
-size = Vector3(60, 1, 60)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.489199, -1.3086364, 1.5115662)
+size = Vector3(127.84741, 1, 153.91553)
 material = SubResource("StandardMaterial3D_b121j")
 
 [node name="end" type="Area3D" parent="." unique_id=1694412593]
@@ -640,7 +640,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1, 11)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="end" unique_id=1790170853]
 shape = SubResource("BoxShape3D_b121j")
 
-[node name="Timer" type="Timer" parent="." unique_id=1081718234]
+[node name="feedback_timer" type="Timer" parent="." unique_id=1081718234]
 wait_time = 2.0
 one_shot = true
 
@@ -651,10 +651,30 @@ autostart = true
 libraries/ = SubResource("AnimationLibrary_8c41q")
 speed_scale = 2.2
 
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=426842886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.427904, 12.122009, -61.099937)
+cast_shadow = 0
+size = Vector3(138.52441, 54.24402, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=1605058147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10.682358, 89.20563)
+cast_shadow = 0
+size = Vector3(1, 50, 178.41125)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D" unique_id=499175527]
+transform = Transform3D(1, 0, 0, 0, 0.2870262, -0.95792276, 0, 0.95792276, 0.2870262, -6.2894, 17.138786, 8.860519)
+cast_shadow = 0
+size = Vector3(139.2934, 50, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D" unique_id=53296168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.971886, 5.73526, 50.84732)
+cast_shadow = 0
+size = Vector3(1, 50, 100)
+
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="feedback_timer" to="." method="_on_feedback_timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]

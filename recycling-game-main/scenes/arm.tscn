@@ -156,11 +156,12 @@ _data = {
 &"open_claw": SubResource("Animation_o10co")
 }
 
-[node name="arm" unique_id=1757234389 node_paths=PackedStringArray("ik", "rest", "marker", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
+[node name="arm" unique_id=1757234389 node_paths=PackedStringArray("ik", "rest", "marker", "camera_c", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
 script = ExtResource("2_dy6di")
 ik = NodePath("Armature/Skeleton3D/SkeletonIK3D")
 rest = NodePath("rest_position_marker")
 marker = NodePath("Marker3D")
+camera_c = NodePath("Armature/ik_target/Camera C")
 armature = NodePath("Armature")
 animation = NodePath("AnimationPlayer")
 ik_target = NodePath("Armature/ik_target")
@@ -206,6 +207,9 @@ target_node = NodePath("../../ik_target")
 
 [node name="ik_target" type="Marker3D" parent="Armature" parent_id_path=PackedInt32Array(926144011) index="1" unique_id=400220375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
+
+[node name="Camera C" type="Camera3D" parent="Armature/ik_target" index="0" unique_id=2077856477]
+transform = Transform3D(-0.04595048, 0.5790677, -0.8139835, 0.03263721, 0.8152795, 0.57814723, 0.99841046, -7.4490054e-09, -0.05636163, -11.675544, 8.036697, 0)
 
 [node name="Marker3D" type="Marker3D" parent="." index="1" unique_id=2028991733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0)
