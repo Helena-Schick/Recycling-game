@@ -36,7 +36,11 @@ offset_left = 137.0
 offset_top = 186.0
 offset_right = 999.0
 offset_bottom = 450.0
-text = "\"Tin can 3D pack\" (https://sketchfab.com/3d-models/tin-can-3d-pack-19dba56076944c3f89df1660f90afcc4) by Subdivision Productions (https://sketchfab.com/SubdivisionProductions) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)"
+text = "Food Kit by Kenney via Poly Pizza
+https://poly.pizza/bundle/Food-Kit-vOc58LJ0ge
+
+Trashcan by Quaternius (https://poly.pizza/m/XSwahu252t)
+"
 autowrap_mode = 2
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

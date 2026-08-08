@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://nr5fkbcgjm63"]
+
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_nmd1m"]
+[ext_resource type="ArrayMesh" uid="uid://cx7b77m164cm1" path="res://assets/meshes/Soda Can_sodaCan_1.res" id="1_omwph"]
+
+[resource]
+script = ExtResource("1_nmd1m")
+bin = 2
+mesh = ExtResource("1_omwph")
+scale = Vector3(3.6, 4, 3.6)
+height = 1.32
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

@@ -25,3 +25,9 @@ func _ready() -> void:
 	mesh_instance.rotation.y += randf_range(-ANGLE, ANGLE)
 	mesh_instance.scale = data.scale
 	collision_shape.shape.size.y = data.height
+	mesh_instance.position.y = -data.height / 2.0
+	
+	# Set random rotation so item can fall on it's side
+	if data.tip_over: 
+		rotation.x = randf() * PI
+	

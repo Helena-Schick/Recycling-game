@@ -6,8 +6,8 @@ extends Node3D
 @onready var material = animated_mesh.get_surface_override_material(0)
 
 const DIRECTION = Vector3(0, 0, 1)
-const SPEED: float = 5.0
-const OFFSET_SPEED: float = -1.25
+const SPEED: float = 5.0 ## The speed of the items
+const OFFSET_SPEED: float = -1.25 # How fast the conveyer belt texture moves 
 
 
 ## Returns the first item on the conveyer to be grabbed

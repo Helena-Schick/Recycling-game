@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c1o047ea2cv2a" path="res://scenes/settings_menu.tscn" id="3_2r41h"]
 [ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
+[ext_resource type="ArrayMesh" uid="uid://l3pj0uuvwiob" path="res://assets/meshes/Root Scene_Trashcan_Green.res" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klq6b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -670,6 +671,14 @@ size = Vector3(139.2934, 50, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.971886, 5.73526, 50.84732)
 cast_shadow = 0
 size = Vector3(1, 50, 100)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1925441073]
+transform = Transform3D(-223.61833, 199.98706, 8.741713e-06, -2.2023136e-19, -1.3113417e-05, 299.99997, 199.98706, 223.61833, 9.774668e-06, 26.717773, -0.6089144, 14.041508)
+mesh = ExtResource("8_b121j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1198741443]
+transform = Transform3D(-223.61833, 199.98706, 8.741713e-06, -2.2023136e-19, -1.3113417e-05, 299.99997, 199.98706, 223.61833, 9.774668e-06, 23.961512, -0.7655697, 17.108713)
+mesh = ExtResource("8_b121j")
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]

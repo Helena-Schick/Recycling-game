@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bcu6hkmr11xm3"]
+
+[ext_resource type="ArrayMesh" uid="uid://bhh7ao4w3ky3r" path="res://assets/meshes/Apple Half_appleHalf_1.res" id="1_boo1c"]
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_gson3"]
+
+[resource]
+script = ExtResource("1_gson3")
+bin = 1
+mesh = ExtResource("1_boo1c")
+scale = Vector3(6, 6, 6)
+rotation = Vector3(0, 180, 0)
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

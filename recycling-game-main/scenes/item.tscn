@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bialkiujn08if"]
 
 [ext_resource type="Script" uid="uid://bq54vu85g7ksd" path="res://scripts/item.gd" id="1_4gq7n"]
+[ext_resource type="ArrayMesh" uid="uid://bhh7ao4w3ky3r" path="res://assets/meshes/Apple Half_appleHalf_1.res" id="2_s8enn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gq7n"]
 resource_local_to_scene = true
@@ -15,3 +16,8 @@ collision_shape = NodePath("CollisionShape3D")
 shape = SubResource("BoxShape3D_4gq7n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=231355823]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1380353900]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+visible = false
+mesh = ExtResource("2_s8enn")

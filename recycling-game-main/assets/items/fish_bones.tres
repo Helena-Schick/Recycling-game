@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://de76oagmsg7df"]
+
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_2mgjr"]
+[ext_resource type="ArrayMesh" uid="uid://dxtkoiwjbtncr" path="res://assets/meshes/Fish Bones_fishBones_1.res" id="1_3gpnx"]
+
+[resource]
+script = ExtResource("1_2mgjr")
+bin = 1
+mesh = ExtResource("1_3gpnx")
+scale = Vector3(4, 4, 4)
+height = 0.2
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"
