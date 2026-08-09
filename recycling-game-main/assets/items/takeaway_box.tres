@@ -8,4 +8,5 @@ script = ExtResource("1_rf3dp")
 mesh = ExtResource("1_1ye4d")
 scale = Vector3(4, 4, 4)
 height = 1.4
+tip_over = true
 metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

@@ -11,8 +11,8 @@ extends Node3D
 @export var bin_markers: Array[Marker3D] ## An array of markers for the bins 
 
 
-const SPEED: float = 15.0 ## The speed at which the arm moves
-const Y_MOVEMENT_SCALE: int = 3 ## How much faster the arm needs to move upward
+var speed: float = 15.0 ## The speed at which the arm moves
+const Y_MOVEMENT_SCALE: float = 3.0 ## How much faster the arm needs to move upward
 
 var target_pos ## The position the arm is moving to
 var target_item ## The item or node the arm is moving to
@@ -38,9 +38,9 @@ func _process(delta: float) -> void:
 		
 		# Move marker towards target item
 		var marker_pos = marker.global_position
-		marker.global_position.x = move_toward(marker_pos.x, target_pos.x, SPEED * delta * dir.x)
-		marker.global_position.y = move_toward(marker_pos.y, target_pos.y, SPEED * delta * dir.y)
-		marker.global_position.z = move_toward(marker_pos.z, target_pos.z, SPEED * delta * dir.z)
+		marker.global_position.x = move_toward(marker_pos.x, target_pos.x, speed * delta * dir.x)
+		marker.global_position.y = move_toward(marker_pos.y, target_pos.y, speed * delta * dir.y)
+		marker.global_position.z = move_toward(marker_pos.z, target_pos.z, speed * delta * dir.z)
 		
 		# Check if the target has been reached
 		if marker.global_position == target_pos:

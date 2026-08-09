@@ -12,10 +12,11 @@ timer = NodePath("Timer")
 item_scene = ExtResource("2_ik2nu")
 
 [node name="Timer" type="Timer" parent="." unique_id=1582779946]
+wait_time = 0.5
 autostart = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1330186567]
 visible = false
 mesh = SubResource("BoxMesh_ik2nu")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_spawn_item"]

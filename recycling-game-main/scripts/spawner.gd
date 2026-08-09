@@ -4,7 +4,7 @@ extends Node3D
 @export var item_scene: PackedScene
 
 var items: Array[ItemData]
-var time: float = 2.0
+var time: float = 2.0 ## The average time for each item to spawn
 var randomness: float = 0.4
 
 const SIZE: float = 1.3 # The size of the area where items spawn
@@ -12,13 +12,14 @@ const items_folder: String = "res://assets/items/" ## The path to the folder of 
 
 
 func _ready() -> void:
+	# Get the item data from the items folder
 	for item in Array(DirAccess.get_files_at(items_folder)):
 		if item.ends_with(".tres"):
 			items.append(load(items_folder + item))
 
 
 # Spawns the item when the timer goes off
-func _on_timer_timeout() -> void:
+func _spawn_item() -> void:
 	# restart timer 
 	timer.wait_time = time + randf_range(-1, 1) * randomness * time
 	timer.start()
@@ -29,4 +30,4 @@ func _on_timer_timeout() -> void:
 	item.position = position + Vector3(randf_range(-SIZE, SIZE), 0, 0)
 	
 	item.add_to_group("rubbish_items")
-	add_sibling(item)
+	add_sibling.call_deferred(item)

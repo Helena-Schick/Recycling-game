@@ -9,4 +9,5 @@ bin = 2
 mesh = ExtResource("1_omwph")
 scale = Vector3(3.6, 4, 3.6)
 height = 1.32
+tip_over = true
 metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

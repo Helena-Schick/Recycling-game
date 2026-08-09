@@ -33,14 +33,23 @@ text = "CREDITS"
 [node name="Label2" type="Label" parent="." unique_id=322989990]
 layout_mode = 0
 offset_left = 137.0
-offset_top = 186.0
+offset_top = 145.0
 offset_right = 999.0
-offset_bottom = 450.0
+offset_bottom = 584.0
 text = "Food Kit by Kenney via Poly Pizza
 https://poly.pizza/bundle/Food-Kit-vOc58LJ0ge
 
 Trashcan by Quaternius (https://poly.pizza/m/XSwahu252t)
-"
+
+trash by Anonymous [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/E3TEFhtsBv)
+
+TIME HOTEL 2.10 by S. Paul Michael [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/994lzjJo4tJ)
+
+TIME HOTEL 3.16 by S. Paul Michael [CC-BY] (https://creativecommons.org/licenses/by/3.0/) via Poly Pizza (https://poly.pizza/m/a2N37loLrql)
+
+Carton by Kenney (https://poly.pizza/m/T2QjC2ZQya)
+
+Dumpster by Quaternius (https://poly.pizza/m/PKsbolkZSr)"
 autowrap_mode = 2
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

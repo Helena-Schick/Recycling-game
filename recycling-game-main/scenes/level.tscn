@@ -6,8 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://c1o047ea2cv2a" path="res://scenes/settings_menu.tscn" id="3_2r41h"]
 [ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="4_klq6b"]
-[ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/conveyer.tscn" id="4_mx8sn"]
-[ext_resource type="ArrayMesh" uid="uid://l3pj0uuvwiob" path="res://assets/meshes/Root Scene_Trashcan_Green.res" id="8_b121j"]
+[ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/main_conveyer.tscn" id="4_mx8sn"]
+[ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/arm_resources/material.tres" id="8_8c41q"]
+[ext_resource type="ArrayMesh" uid="uid://te6qca3jau21" path="res://assets/meshes/Root Scene_Trashcan_Green.res" id="8_b121j"]
+[ext_resource type="PackedScene" uid="uid://cnqw1ie7dkwdl" path="res://assets/meshes/Dumpster by Quaternius - PKsbolkZSr.glb" id="10_olg7q"]
+[ext_resource type="PackedScene" uid="uid://bp6r3jxtah43r" path="res://scenes/conveyer.tscn" id="11_t1rx8"]
+[ext_resource type="PackedScene" uid="uid://c2y2limy4naeb" path="res://scenes/conveyer_corner.tscn" id="12_8iemx"]
+[ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="13_64w2a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klq6b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -390,10 +395,17 @@ _data = {
 &"incorrect": SubResource("Animation_8c41q")
 }
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "pause_button", "time_display", "score_display", "feedback_display")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82cfe"]
+albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6wmr"]
+albedo_color = Color(0.08701607, 0.08701607, 0.08701607, 1)
+
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "pause_button", "time_display", "score_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
+spawner = NodePath("spawner")
 conveyor = NodePath("conveyer")
 camera_a = NodePath("Camera A")
 camera_b = NodePath("Camera B")
@@ -426,7 +438,7 @@ fov = 65.0
 [node name="Camera B" type="Camera3D" parent="." unique_id=1779872693]
 transform = Transform3D(0.95548975, 0.07037319, -0.2865083, 3.047353e-09, 0.9711343, 0.2385335, 0.29502437, -0.2279163, 0.92790884, 3.5455012, 8.0666685, 12.106898)
 
-[node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("4_mx8sn")]
+[node name="conveyer" parent="." unique_id=1782603669 groups=["conveyers"] instance=ExtResource("4_mx8sn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
 
 [node name="bin" parent="." unique_id=368182351 node_paths=PackedStringArray("level") instance=ExtResource("2_w7c3h")]
@@ -631,8 +643,8 @@ spot_range = 34.179
 spot_angle = 50.29
 
 [node name="floor" type="CSGBox3D" parent="." unique_id=1202643830]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.489199, -1.3086364, 1.5115662)
-size = Vector3(127.84741, 1, 153.91553)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.489199, -1.3086364, 10.687408)
+size = Vector3(127.84741, 1, 172.26721)
 material = SubResource("StandardMaterial3D_b121j")
 
 [node name="end" type="Area3D" parent="." unique_id=1694412593]
@@ -652,33 +664,105 @@ autostart = true
 libraries/ = SubResource("AnimationLibrary_8c41q")
 speed_scale = 2.2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=426842886]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.427904, 12.122009, -61.099937)
+[node name="Walls" type="CSGBox3D" parent="." unique_id=426842886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.953295, 11.550934, -61.099937)
 cast_shadow = 0
-size = Vector3(138.52441, 54.24402, 1)
+size = Vector3(94, 28, 1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=1605058147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10.682358, 89.20563)
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls" unique_id=1605058147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.47461, 4.0816193, 67.43025)
 cast_shadow = 0
-size = Vector3(1, 50, 178.41125)
+size = Vector3(1, 36, 135)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D" unique_id=499175527]
-transform = Transform3D(1, 0, 0, 0, 0.2870262, -0.95792276, 0, 0.95792276, 0.2870262, -6.2894, 17.138786, 8.860519)
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls/CSGBox3D" unique_id=715484101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4537735, -14.737555, -39.13031)
+size = Vector3(9.907349, 7, 7)
+material = SubResource("StandardMaterial3D_82cfe")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls/CSGBox3D" unique_id=752492825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9278336, -14.737555, -39.13031)
+operation = 2
+size = Vector3(11.855469, 6, 6)
+material = SubResource("StandardMaterial3D_h6wmr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls" unique_id=499175527]
+transform = Transform3D(1, 0, 0, 0, 0.29237166, -0.9563048, 0, 0.9563048, 0.29237166, -0.025390625, 16.686548, 15.007725)
 cast_shadow = 0
-size = Vector3(139.2934, 50, 1)
+size = Vector3(94, 35, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D" unique_id=53296168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.971886, 5.73526, 50.84732)
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls" unique_id=53296168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.497276, 6.0659485, 50.1774)
 cast_shadow = 0
-size = Vector3(1, 50, 100)
+size = Vector3(1, 40, 101)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1925441073]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls" unique_id=790705442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.02751, 0.94973755, 1.3018951)
+cast_shadow = 0
+size = Vector3(2, 30, 2)
+material = ExtResource("8_8c41q")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Walls" unique_id=174621856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.02751, 0.57107544, 132.83441)
+cast_shadow = 0
+size = Vector3(2, 30, 2)
+material = ExtResource("8_8c41q")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Walls" unique_id=466256185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.383636, 0.57107544, 1.3018875)
+cast_shadow = 0
+size = Vector3(2, 50, 2)
+material = ExtResource("8_8c41q")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Walls" unique_id=1246523380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6289673, 3.4520874, 132.88783)
+cast_shadow = 0
+size = Vector3(95, 40, 1)
+
+[node name="Bin1" type="MeshInstance3D" parent="." unique_id=1925441073]
 transform = Transform3D(-223.61833, 199.98706, 8.741713e-06, -2.2023136e-19, -1.3113417e-05, 299.99997, 199.98706, 223.61833, 9.774668e-06, 26.717773, -0.6089144, 14.041508)
 mesh = ExtResource("8_b121j")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1198741443]
+[node name="Bin2" type="MeshInstance3D" parent="." unique_id=1198741443]
 transform = Transform3D(-223.61833, 199.98706, 8.741713e-06, -2.2023136e-19, -1.3113417e-05, 299.99997, 199.98706, 223.61833, 9.774668e-06, 23.961512, -0.7655697, 17.108713)
 mesh = ExtResource("8_b121j")
+
+[node name="Dumpster2" parent="." unique_id=1519123191 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, 56.672062, -0.6436634, 20.498272)
+
+[node name="Dumpster6" parent="Dumpster2" unique_id=673920844 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11.752806, 0, 0.77538204)
+
+[node name="Dumpster7" parent="Dumpster2" unique_id=221963364 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11.752806, 0, 3.6184301)
+
+[node name="Dumpster" parent="Dumpster2" unique_id=1373375868 instance=ExtResource("10_olg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4804842, 0, 0)
+
+[node name="Dumpster3" parent="Dumpster2" unique_id=780812532 instance=ExtResource("10_olg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.001977, 0, 0)
+
+[node name="Dumpster4" parent="Dumpster2" unique_id=816817650 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.532333, 0, 20.159115)
+
+[node name="Dumpster5" parent="Dumpster2" unique_id=397469197 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.532333, 0, 17.452387)
+
+[node name="Dumpster8" parent="Dumpster2" unique_id=1063577556 instance=ExtResource("10_olg7q")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.532333, 0, 14.750444)
+
+[node name="conveyer2" parent="." unique_id=586590780 groups=["conveyers"] instance=ExtResource("11_t1rx8")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37.85, 0, -32.8)
+
+[node name="conveyer_corner" parent="." unique_id=1275051728 groups=["conveyers"] instance=ExtResource("12_8iemx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.8, 0, -30)
+
+[node name="spawner" parent="." unique_id=600458319 instance=ExtResource("13_64w2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.058624, 2.523, -32.8)
+
+[node name="speed_timer" type="Timer" parent="." unique_id=724790142]
+wait_time = 4.0
+one_shot = true
+autostart = true
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
@@ -687,3 +771,4 @@ mesh = ExtResource("8_b121j")
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="timeout" from="feedback_timer" to="." method="_on_feedback_timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="speed_timer" to="." method="_on_speed_timer_timeout"]

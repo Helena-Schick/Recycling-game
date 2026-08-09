@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bu8v0fyraj38q"]
+
+[ext_resource type="Script" uid="uid://d1hhqn82ohqaj" path="res://scripts/item_data.gd" id="1_2a4la"]
+[ext_resource type="ArrayMesh" uid="uid://cmkmwfjvt5cy1" path="res://assets/meshes/Carton by Kenney - T2QjC2ZQya_carton_1.res" id="1_ua2oq"]
+
+[resource]
+script = ExtResource("1_2a4la")
+mesh = ExtResource("1_ua2oq")
+scale = Vector3(4, 4, 4)
+rotation = Vector3(0, 3.142, 0)
+height = 2.4
+tip_over = true
+metadata/_custom_type_script = "uid://d1hhqn82ohqaj"

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bla225e0h4nil"]
+
+[ext_resource type="Script" uid="uid://dthquj581k1b8" path="res://scripts/conveyer.gd" id="1_rntgv"]
+[ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/arm_resources/material.tres" id="2_paugm"]
+[ext_resource type="Texture2D" uid="uid://bnti4hmprsh6l" path="res://assets/meshes/Untitled.png" id="4_28sha"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28sha"]
+albedo_color = Color(0.13464907, 0.1346491, 0.1346491, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uq6ko"]
+size = Vector3(0.4, 0.7, 40.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7cd8w"]
+size = Vector3(5, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_paugm"]
+size = Vector3(5, 0.1, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28sha"]
+size = Vector3(5.1, 0.2, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uq6ko"]
+transparency = 1
+albedo_color = Color(0.9668203, 0, 0.20266923, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4ilju"]
+material = SubResource("StandardMaterial3D_uq6ko")
+size = Vector2(5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8prdu"]
+transparency = 1
+albedo_color = Color(0.00023478181, 0.8816539, 1.5016794e-05, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aapwm"]
+material = SubResource("StandardMaterial3D_8prdu")
+size = Vector2(5, 0.15)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_28sha"]
+lightmap_size_hint = Vector2i(202, 27)
+size = Vector2(40, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ilju"]
+albedo_color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+albedo_texture = ExtResource("4_28sha")
+uv1_scale = Vector3(10, 1, 1)
+
+[node name="conveyer" type="Node3D" unique_id=1782603669 node_paths=PackedStringArray("target_area", "conveyor_area", "animated_mesh")]
+script = ExtResource("1_rntgv")
+target_area = NodePath("target_area")
+conveyor_area = NodePath("conveyer_area")
+animated_mesh = NodePath("plane")
+
+[node name="mesh" type="CSGBox3D" parent="." unique_id=1681090691]
+size = Vector3(5, 0.5, 40)
+material = SubResource("StandardMaterial3D_28sha")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="mesh" unique_id=121071994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, 0)
+mesh = SubResource("BoxMesh_uq6ko")
+material = ExtResource("2_paugm")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="mesh" unique_id=182904776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, 0)
+mesh = SubResource("BoxMesh_uq6ko")
+material = ExtResource("2_paugm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=995458812]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1533608439]
+shape = SubResource("BoxShape3D_7cd8w")
+
+[node name="conveyer_area" type="Area3D" parent="." unique_id=1660293253]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer_area" unique_id=2142502933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31, 0)
+shape = SubResource("BoxShape3D_paugm")
+
+[node name="target_area" type="Area3D" parent="." unique_id=932064702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.300286)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="target_area" unique_id=891543933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_28sha")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="target_area" unique_id=351872443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 4)
+mesh = SubResource("PlaneMesh_4ilju")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="target_area" unique_id=1601336706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -4)
+mesh = SubResource("PlaneMesh_aapwm")
+
+[node name="plane" type="MeshInstance3D" parent="." unique_id=1798259947]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.2602353, 0)
+mesh = SubResource("PlaneMesh_28sha")
+surface_material_override/0 = SubResource("StandardMaterial3D_4ilju")
+
+[connection signal="body_entered" from="conveyer_area" to="." method="_on_area_3d_body_entered"]

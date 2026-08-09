@@ -2,7 +2,8 @@ extends Node3D
 
 @export var arm: Node ## The mechanical arm node
 @export var timer: Node ## The timer for how long to show feedback for
-@export var conveyor: Node ## The conveyer belt node 
+@export var spawner: Node ## The item spawner
+@export var conveyor: Node ## The main conveyer belt node 
 @export var camera_a: Node ## The main camera 
 @export var camera_b: Node ## The second camera
 @export var animation: Node ## The animation player for the score display
@@ -19,6 +20,7 @@ enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
 const SCORE_TEXT: String = "SCORE: "
 const CAMERAS: int = 3 ## The number of cameras
+const START_SPEED: float = 4.0 ## The faster speed to fill the conveyer with items 
 
 var score: int = 0
 var current_camera: int = 0
@@ -32,6 +34,7 @@ func _ready() -> void:
 	arm_material.albedo_color = Global.settings["colour"]
 	camera_c = arm.camera_c
 	camera_a.make_current()
+	_change_speed(START_SPEED)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -141,3 +144,14 @@ func _on_level_timer_timeout() -> void:
 		minutes = "0" + minutes
 		
 	time_display.text = minutes + ":" + seconds
+	
+
+func _change_speed(factor: float):
+	for conveyer in get_tree().get_nodes_in_group("conveyers"):
+		conveyer.speed *= factor
+	spawner.time /= factor
+	arm.speed *= factor
+
+
+func _on_speed_timer_timeout() -> void:
+	_change_speed(1 / START_SPEED)

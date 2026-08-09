@@ -7,6 +7,7 @@ enum bin_type {RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS}
 @export var data: ItemData ## The data for the item
 
 const ANGLE: float = PI / 4
+const TIP_ANGLE: float = PI / 2
 
 var bin: int
 var mesh: Resource
@@ -22,12 +23,12 @@ func _ready() -> void:
 	
 	# Set size and rotation
 	mesh_instance.rotation = data.rotation
-	mesh_instance.rotation.y += randf_range(-ANGLE, ANGLE)
+	rotation.y += randf_range(-ANGLE, ANGLE)
 	mesh_instance.scale = data.scale
 	collision_shape.shape.size.y = data.height
-	mesh_instance.position.y = -data.height / 2.0
+	mesh_instance.position.y = -data.height / 2
 	
 	# Set random rotation so item can fall on it's side
 	if data.tip_over: 
-		rotation.x = randf() * PI
+		rotation.x = randf_range(0, TIP_ANGLE)
 	
