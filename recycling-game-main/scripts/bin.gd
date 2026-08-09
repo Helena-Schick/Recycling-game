@@ -12,4 +12,5 @@ func _on_area_3d_body_entered(item: Node3D) -> void:
 	else:
 		level.change_score(-level.ITEM_VALUE)
 		level.show_feedback(item.text)
+		level.decrease_lives()
 	item.call_deferred("queue_free")

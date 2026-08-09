@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://dq536o8uflxm8" path="res://scenes/bin.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://c1o047ea2cv2a" path="res://scenes/settings_menu.tscn" id="3_2r41h"]
+[ext_resource type="PackedScene" uid="uid://bialkiujn08if" path="res://scenes/item.tscn" id="3_fpun6"]
 [ext_resource type="Material" uid="uid://bx2rmpwyutahk" path="res://assets/arm_resources/material2.tres" id="4_klq6b"]
 [ext_resource type="PackedScene" uid="uid://bla225e0h4nil" path="res://scenes/main_conveyer.tscn" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://cdkbefx12avpx" path="res://scenes/game_over_menu.tscn" id="5_wc255"]
 [ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/arm_resources/material.tres" id="8_8c41q"]
 [ext_resource type="ArrayMesh" uid="uid://te6qca3jau21" path="res://assets/meshes/Root Scene_Trashcan_Green.res" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://cnqw1ie7dkwdl" path="res://assets/meshes/Dumpster by Quaternius - PKsbolkZSr.glb" id="10_olg7q"]
@@ -401,7 +403,14 @@ albedo_color = Color(0.24115604, 0.24115604, 0.24115604, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6wmr"]
 albedo_color = Color(0.08701607, 0.08701607, 0.08701607, 1)
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "pause_button", "time_display", "score_display", "feedback_display")]
+[sub_resource type="Curve3D" id="Curve3D_64w2a"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 60, 2, -32.8, 0, 0, 0, 0, 0, 0, 4.30591, 1.0319538, -32.62943, 0, 0, 0, 0, 0, 0, 4.657194, 0.5490551, -25.444862),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "path_follow", "pause_button", "time_display", "score_display", "feedback_display", "lives_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
@@ -411,13 +420,17 @@ camera_a = NodePath("Camera A")
 camera_b = NodePath("Camera B")
 animation = NodePath("AnimationPlayer")
 pause_menu = NodePath("CanvasLayer/pause_menu")
+path_follow = NodePath("Path3D/PathFollow3D")
 pause_button = NodePath("CanvasLayer/pause")
 time_display = NodePath("CanvasLayer/time")
 score_display = NodePath("CanvasLayer/score_label")
 feedback_display = NodePath("CanvasLayer/feedback_display")
 arm_material = ExtResource("4_klq6b")
+item_scene = ExtResource("3_fpun6")
 settings_menu = ExtResource("3_2r41h")
+game_over_menu = ExtResource("5_wc255")
 main_menu_scene = ExtResource("2_ppgk2")
+lives_display = NodePath("CanvasLayer/lives")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1371495711]
 environment = SubResource("Environment_8c41q")
@@ -634,6 +647,15 @@ theme_override_font_sizes/font_size = 20
 text = "00:00"
 metadata/_edit_use_anchors_ = true
 
+[node name="lives" type="Label" parent="CanvasLayer" unique_id=1686415295]
+anchors_preset = -1
+anchor_left = 0.036458332
+anchor_top = 0.83487654
+anchor_right = 0.08767361
+anchor_bottom = 0.8703704
+text = "LIVES: 3"
+metadata/_edit_use_anchors_ = true
+
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=119006520]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 20, 0)
 light_color = Color(1, 1, 0.8039216, 1)
@@ -757,12 +779,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37.8
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.8, 0, -30)
 
 [node name="spawner" parent="." unique_id=600458319 instance=ExtResource("13_64w2a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.058624, 2.523, -32.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 
-[node name="speed_timer" type="Timer" parent="." unique_id=724790142]
-wait_time = 4.0
-one_shot = true
-autostart = true
+[node name="Path3D" type="Path3D" parent="." unique_id=29436538]
+curve = SubResource("Curve3D_64w2a")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
+transform = Transform3D(-0.0030626338, -0.017378606, 0.9998394, 7.636814e-08, 0.99984354, 0.017378699, -0.9999913, 5.330113e-05, -0.0030621674, 49.001724, 1.8088338, -32.766308)
+progress = 11.0
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
@@ -771,4 +795,3 @@ autostart = true
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="timeout" from="feedback_timer" to="." method="_on_feedback_timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
-[connection signal="timeout" from="speed_timer" to="." method="_on_speed_timer_timeout"]

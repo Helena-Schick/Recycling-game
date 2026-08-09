@@ -19,4 +19,4 @@ autostart = true
 visible = false
 mesh = SubResource("BoxMesh_ik2nu")
 
-[connection signal="timeout" from="Timer" to="." method="_spawn_item"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

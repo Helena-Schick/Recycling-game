@@ -10,6 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
+level_scene = "res://scenes/level.tscn"
+credits_scene = "res://scenes/credits.tscn"
 
 [node name="Label" type="Label" parent="." unique_id=421233001]
 layout_mode = 0

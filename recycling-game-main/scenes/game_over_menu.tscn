@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cdkbefx12avpx"]
+
+[ext_resource type="Script" uid="uid://nwlf882asb4k" path="res://game_over_menu.gd" id="1_6ebp1"]
+[ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="3_81acl"]
+
+[node name="Control" type="Control" unique_id=171901341 node_paths=PackedStringArray("score_display")]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ebp1")
+level_scene = "res://scenes/level.tscn"
+main_menu = ExtResource("3_81acl")
+score_display = NodePath("Score")
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1177675889]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16840278
+anchor_top = 0.19753087
+anchor_right = 0.8333333
+anchor_bottom = 0.81635803
+color = Color(0.8039216, 0.8039216, 0.8039216, 0.78431374)
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="." unique_id=644609818]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38194445
+anchor_top = 0.5123457
+anchor_right = 0.6024306
+anchor_bottom = 0.5941358
+text = "Play Again"
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit" type="Button" parent="." unique_id=569170051]
+layout_mode = 0
+anchor_left = 0.3810764
+anchor_top = 0.625
+anchor_right = 0.6024306
+anchor_bottom = 0.70679015
+offset_bottom = -3.0517578e-05
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Label" parent="." unique_id=1927946745]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45572916
+anchor_top = 0.4228395
+anchor_right = 0.5295139
+anchor_bottom = 0.45833334
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1865447679]
+layout_mode = 0
+anchor_left = 0.42881945
+anchor_top = 0.33796296
+anchor_right = 0.5538194
+anchor_bottom = 0.3919753
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "GAME OVER"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
