@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdkbefx12avpx"]
 
-[ext_resource type="Script" uid="uid://nwlf882asb4k" path="res://game_over_menu.gd" id="1_6ebp1"]
+[ext_resource type="Script" uid="uid://nwlf882asb4k" path="res://scripts/game_over_menu.gd" id="1_6ebp1"]
 [ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="3_81acl"]
 
 [node name="Control" type="Control" unique_id=171901341 node_paths=PackedStringArray("score_display")]

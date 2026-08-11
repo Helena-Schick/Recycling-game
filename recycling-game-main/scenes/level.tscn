@@ -405,12 +405,12 @@ albedo_color = Color(0.08701607, 0.08701607, 0.08701607, 1)
 
 [sub_resource type="Curve3D" id="Curve3D_64w2a"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 60, 2, -32.8, 0, 0, 0, 0, 0, 0, 4.30591, 1.0319538, -32.62943, 0, 0, 0, 0, 0, 0, 4.657194, 0.5490551, -25.444862),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 60, 2, -32.8, 0, 0, 0, 0, 0, 0, 4.30591, 1.0319538, -32.62943, 0, 0, 0, 0, 0, 0, 4.657194, 0.5490551, -18.301743),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "path_follow", "pause_button", "time_display", "score_display", "feedback_display", "lives_display")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
@@ -420,17 +420,18 @@ camera_a = NodePath("Camera A")
 camera_b = NodePath("Camera B")
 animation = NodePath("AnimationPlayer")
 pause_menu = NodePath("CanvasLayer/pause_menu")
+speed_timer = NodePath("difficulty_timer")
 path_follow = NodePath("Path3D/PathFollow3D")
 pause_button = NodePath("CanvasLayer/pause")
 time_display = NodePath("CanvasLayer/time")
 score_display = NodePath("CanvasLayer/score_label")
+lives_display = NodePath("CanvasLayer/lives")
 feedback_display = NodePath("CanvasLayer/feedback_display")
 arm_material = ExtResource("4_klq6b")
 item_scene = ExtResource("3_fpun6")
 settings_menu = ExtResource("3_2r41h")
 game_over_menu = ExtResource("5_wc255")
 main_menu_scene = ExtResource("2_ppgk2")
-lives_display = NodePath("CanvasLayer/lives")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1371495711]
 environment = SubResource("Environment_8c41q")
@@ -785,8 +786,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626338, -0.017378606, 0.9998394, 7.636814e-08, 0.99984354, 0.017378699, -0.9999913, 5.330113e-05, -0.0030621674, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.0030626229, -0.017378543, 0.9998358, 7.636786e-08, 0.9998399, 0.017378636, -0.99998766, 5.3300933e-05, -0.0030621563, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
+
+[node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]
+wait_time = 15.0
+autostart = true
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
@@ -795,3 +800,4 @@ progress = 11.0
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="timeout" from="feedback_timer" to="." method="_on_feedback_timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="difficulty_timer" to="." method="_increase_speed"]

@@ -8,24 +8,28 @@ extends Node3D
 @export var camera_b: Node ## The second camera
 @export var animation: Node ## The animation player for the score display
 @export var pause_menu: Node ## The pause menu canvas layer
+@export var speed_timer: Node ## The timer to increase speed
 @export var path_follow: Node ## The path follow node for spawning on the conveyer
 @export var pause_button: Node ## The button that pauses the game
 @export var time_display: Node ## Shows how long the user has been playing the level for
 @export var score_display: Node ## The label that displays the player's score
+@export var lives_display: Node ## The label that shows lives left
 @export var feedback_display: Node ## The label that displays feedback to the player
 @export var arm_material: Resource ## The material resource for the arm
 @export var item_scene: PackedScene ## The item scene
 @export var settings_menu: PackedScene ## The scene for the settings menu
 @export var game_over_menu: PackedScene ## The menu that shows when the game ends
 @export var main_menu_scene: PackedScene ## The main menu packed scene
-@export var lives_display: Node ## The label that shows lives left
 
 
 enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
 const SCORE_TEXT: String = "SCORE: "
 const CAMERAS: int = 3 ## The number of cameras
-const START_ITEMS: int = 6 ## The number of items that start on the conveyer
+const START_ITEMS: int = 7 ## The number of items that start on the conveyer
+const SPEED_FACTOR: float = 0.15 ## The factor by which the speed increases
+const MAX_SPEED: float = 12.0 ## The maximum speed of the conveyer
+const SPEED_CHANGE: float = 0.8
 
 var score: int = 0 ## The current score
 var lives: int = 3 ## The number of incorrect guesses left
@@ -166,8 +170,14 @@ func _on_level_timer_timeout() -> void:
 	time_display.text = minutes + ":" + seconds
 
 
-func _change_speed(factor: float):
-	for conveyer in get_tree().get_nodes_in_group("conveyers"):
-		conveyer.speed *= factor
-	spawner.time /= factor
-	arm.speed *= factor
+## Increases the speed of the game
+func _increase_speed():
+	for node in get_tree().get_nodes_in_group("conveyers"):
+		node.speed += SPEED_CHANGE
+	spawner.time -= spawner.TIME_CHANGE
+	arm.speed += arm.SPEED_CHANGE
+	
+	## Stop increasing speed at maximum value
+	if arm.speed >= arm.MAX_SPEED:
+		arm.speed = arm.MAX_SPEED
+		speed_timer.stop()

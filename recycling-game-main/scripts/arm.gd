@@ -10,10 +10,11 @@ extends Node3D
 @export var ik_target: Node ## The target for inverse kinematics
 @export var bin_markers: Array[Marker3D] ## An array of markers for the bins 
 
-
-var speed: float = 15.0 ## The speed at which the arm moves
+const MAX_SPEED: float = 30.0 ## The maximun speed of the arm
 const Y_MOVEMENT_SCALE: float = 3.0 ## How much faster the arm needs to move upward
+const SPEED_CHANGE: float = 1.5 ## How much the speed increases by 
 
+var speed: float = 18.0 ## The speed at which the arm moves
 var target_pos ## The position the arm is moving to
 var target_item ## The item or node the arm is moving to
 var grabbed_item ## The item currently being held by the arm, or null if no item

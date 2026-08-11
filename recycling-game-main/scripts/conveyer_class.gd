@@ -8,7 +8,7 @@ extends Node3D
 
 
 const OFFSET_SPEED: float = -0.25 # How fast the conveyer belt texture moves 
-var speed: float = 5.0 ## The speed of the items
+var speed: float = 6.7 ## The speed of the items
 
 
 func move_items(delta: float) -> void:

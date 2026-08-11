@@ -4,11 +4,12 @@ extends Node3D
 @export var item_scene: PackedScene
 
 var items: Array[ItemData]
-var time: float = 2.0 ## The average time for each item to spawn
+var time: float = 1.8 ## The average time for each item to spawn
 var randomness: float = 0.4
 
-const SIZE: float = 1.3 # The size of the area where items spawn
+const SIZE: float = 1.3 ## The size of the area where items spawn
 const items_folder: String = "res://assets/items/" ## The path to the folder of item data
+const TIME_CHANGE: float = 0.13 ## How much the time value decreases by
 
 
 # Called when the node enters the scene tree for the first time.

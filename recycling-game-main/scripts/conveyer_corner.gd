@@ -1,7 +1,7 @@
 extends Node
 
 @export var conveyor_area: Node
-var speed: float = 5.0
+var speed: float = 6.7
 
 
 func _physics_process(delta: float) -> void:
