@@ -786,11 +786,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626229, -0.017378543, 0.9998358, 7.636786e-08, 0.9998399, 0.017378636, -0.99998766, 5.3300933e-05, -0.0030621563, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.003062622, -0.017378539, 0.9998355, 7.636784e-08, 0.9998396, 0.01737863, -0.99998736, 5.330092e-05, -0.0030621553, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]
-wait_time = 15.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]

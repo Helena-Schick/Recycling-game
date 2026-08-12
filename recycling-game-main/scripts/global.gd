@@ -6,6 +6,7 @@ var settings = {
 	"colour" : Color("#22d5ff"),
 	"sound" : true,
 	"music" : true,
+	"high_score" : 0
 }
 
 
