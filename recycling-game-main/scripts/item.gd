@@ -19,7 +19,6 @@ var text: String
 func _ready() -> void:
 	mesh_instance.mesh = data.mesh
 	bin = data.bin
-	text = data.text
 	
 	# Set size and rotation
 	mesh_instance.rotation = data.rotation

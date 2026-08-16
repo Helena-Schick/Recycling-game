@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bp6r3jxtah43r" path="res://scenes/conveyer.tscn" id="11_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://c2y2limy4naeb" path="res://scenes/conveyer_corner.tscn" id="12_8iemx"]
 [ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="13_64w2a"]
-[ext_resource type="AudioStream" uid="uid://dbivf6otwgelh" path="res://assets/tatamusic-gaming-game-video-game-music-550079.mp3" id="16_arp2o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klq6b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -304,19 +303,6 @@ material = SubResource("StandardMaterial3D_wu01b")
 text = "4"
 font_size = 100
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc255"]
-bg_color = Color(1, 0.74552417, 0.7775029, 0.65882355)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 10.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b121j"]
 albedo_color = Color(0.22959313, 0.22959328, 0.22959322, 1)
 
@@ -424,7 +410,7 @@ _data = {
 }
 point_count = 3
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display", "audio_player")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
@@ -446,7 +432,6 @@ item_scene = ExtResource("3_fpun6")
 settings_menu = ExtResource("3_2r41h")
 game_over_menu = ExtResource("5_wc255")
 main_menu_scene = ExtResource("2_ppgk2")
-audio_player = NodePath("AudioStreamPlayer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1371495711]
 environment = SubResource("Environment_8c41q")
@@ -617,15 +602,40 @@ text = "Exit to Menu"
 visible = false
 z_index = 1
 anchors_preset = -1
-anchor_left = 0.040798612
-anchor_top = 0.063271604
-anchor_right = 0.5138889
-anchor_bottom = 0.16358025
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_wc255")
-vertical_alignment = 1
+anchor_left = 0.035590276
+anchor_top = 0.047839507
+anchor_right = 0.7821181
+anchor_bottom = 0.13117284
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
 autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="color_rect" type="ColorRect" parent="CanvasLayer/feedback_display" unique_id=517300188]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.08139535
+anchor_top = -8.814815
+anchor_right = 0.96718764
+anchor_bottom = -7.4487433
+offset_left = 54.0
+offset_top = 464.99997
+offset_right = 54.00006
+offset_bottom = 464.99997
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/feedback_display" unique_id=2131225006]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.013953488
+anchor_top = -0.12962963
+anchor_right = 1.0255814
+anchor_bottom = 1.0925926
+offset_right = 6.1035156e-05
+color = Color(0.36810192, 0.36810198, 0.36810192, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="time" type="Label" parent="CanvasLayer" unique_id=1919672654]
@@ -776,17 +786,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626203, -0.01737853, 0.99983495, 7.63678e-08, 0.99983907, 0.01737862, -0.9999868, 5.330089e-05, -0.0030621537, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.0030626205, -0.017378531, 0.9998351, 7.6367805e-08, 0.9998392, 0.017378623, -0.99998695, 5.3300897e-05, -0.003062154, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]
 wait_time = 20.0
 autostart = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1293772344]
-process_mode = 3
-stream = ExtResource("16_arp2o")
-autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]

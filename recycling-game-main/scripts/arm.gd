@@ -12,7 +12,7 @@ extends Node3D
 
 const MAX_SPEED: float = 30.0 ## The maximun speed of the arm
 const Y_MOVEMENT_SCALE: float = 3.0 ## How much faster the arm needs to move upward
-const SPEED_CHANGE: float = 1.5 ## How much the speed increases by 
+const SPEED_CHANGE: float = 1.4 ## How much the speed increases by 
 
 var speed: float = 18.0 ## The speed at which the arm moves
 var target_pos ## The position the arm is moving to

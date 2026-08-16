@@ -2,6 +2,14 @@ extends Control
 
 @export var level_scene: String
 @export var credits_scene: String
+@export var audio_player: Node
+
+
+func _ready() -> void:
+	Global.load_data()
+	var music = Global.settings["music"]
+	if music == false:
+		audio_player.playing = false
 
 
 ## Start the game

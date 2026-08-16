@@ -11,6 +11,7 @@ var high_score
 const SCORE_TEXT: String = "SCORE: "
 const HIGH_SCORE_TEXT: String = "HIGH SCORE: "
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Get high score
@@ -19,15 +20,13 @@ func _ready() -> void:
 	else:
 		high_score = 0
 		
-	if score > high_score:
+	if score > high_score: # Set new high score
 		high_score = score
 		Global.settings["high_score"] = score
 		Global.save_data()
 		
 	score_display.text = SCORE_TEXT + str(score)
 	high_score_display.text = HIGH_SCORE_TEXT + str(high_score)
-	
-	
 
 
 func _on_play_pressed() -> void:

@@ -21,6 +21,8 @@ extends Node3D
 @export var game_over_menu: PackedScene ## The menu that shows when the game ends
 @export var main_menu_scene: PackedScene ## The main menu packed scene
 
+@export var audio_player : Node ## The AudioStreamPlayer that controls the music
+
 
 enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
@@ -44,6 +46,11 @@ func _ready() -> void:
 	arm_material.albedo_color = Global.settings["colour"]
 	camera_c = arm.camera_c
 	camera_a.make_current()
+	
+	var music = Global.settings["music"]
+	if music == false:
+		audio_player.playing = false
+		
 	
 	# Create items along conveyer
 	for item_number in range(START_ITEMS):
@@ -135,7 +142,7 @@ func decrease_lives() -> void:
 func _on_settings_pressed() -> void:
 	var settings = settings_menu.instantiate()
 	pause_menu.visible = false
-	settings.main = self
+	settings.level = self
 	add_child(settings)
 
 

@@ -5,19 +5,19 @@ extends Control
 @export var sound_toggle : Node
 @export var music_toggle : Node
 
-var main : Node
+var level: Node
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	colour_picker.color = Global.settings["colour"]
-	sound_toggle.button_pressed = Global.settings["sound"]
-	music_toggle.button_pressed = Global.settings["music"]
+	sound_toggle.set_pressed_no_signal(Global.settings["sound"])
+	music_toggle.set_pressed_no_signal(Global.settings["music"])
 
 
 ## closes the settings menu
 func _on_exit_pressed() -> void:
-	main.pause_game()
+	level.pause_game()
 	call_deferred("queue_free")
 	Global.save_data()
 	
@@ -34,3 +34,7 @@ func _on_sound_toggled(toggled_on: bool) -> void:
 
 func _on_music_toggled(toggled_on: bool) -> void:
 	Global.settings["music"] = toggled_on
+	if toggled_on == true:
+		level.audio_player.playing = true
+	else:
+		level.audio_player.playing = false
