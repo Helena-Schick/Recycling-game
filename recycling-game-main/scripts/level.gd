@@ -11,18 +11,20 @@ extends Node3D
 @export var speed_timer: Node ## The timer to increase speed
 @export var path_follow: Node ## The path follow node for spawning on the conveyer
 @export var pause_button: Node ## The button that pauses the game
+
 @export var time_display: Node ## Shows how long the user has been playing the level for
 @export var score_display: Node ## The label that displays the player's score
 @export var lives_display: Node ## The label that shows lives left
 @export var feedback_display: Node ## The label that displays feedback to the player
+
 @export var arm_material: Resource ## The material resource for the arm
 @export var item_scene: PackedScene ## The item scene
 @export var settings_menu: PackedScene ## The scene for the settings menu
 @export var game_over_menu: PackedScene ## The menu that shows when the game ends
 @export var main_menu_scene: PackedScene ## The main menu packed scene
 
-@export var audio_player : Node ## The AudioStreamPlayer that controls the music
-
+@export var music_player: Node ## The AudioStreamPlayer that controls the music
+@export var sound_player: Node ## The AudioStreamPlayer that does the sound effects
 
 enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
@@ -37,19 +39,23 @@ var score: int = 0 ## The current score
 var lives: int = 3 ## The number of incorrect guesses left
 var current_camera: int = 0 ## The active camera number
 var time: int = 0 ## How long the game has been running
-var camera_c: Node
+var camera_c: Node ## The arm pov camera
+var sound: bool = true ## True if sound effects are turned on
+var correct_sound = preload("res://assets/correct.mp3")
+var incorrect_sound = preload("res://assets/wrong.mp3")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_data()
 	arm_material.albedo_color = Global.settings["colour"]
+	sound = Global.settings["sound"]
 	camera_c = arm.camera_c
 	camera_a.make_current()
 	
 	var music = Global.settings["music"]
 	if music == false:
-		audio_player.playing = false
+		music_player.playing = false
 		
 	
 	# Create items along conveyer
@@ -121,11 +127,17 @@ func change_score(value: int) -> void:
 		score = 0
 	score_display.text = SCORE_TEXT + str(score)
 	
-	# Play score label animations
+	# Play score animations and sound effects
 	if value > 0:
 		animation.play("correct")
+		if sound:
+			sound_player.stream = correct_sound
+			sound_player.play()
 	else:
 		animation.play("incorrect")
+		if sound:
+			sound_player.stream = incorrect_sound
+			sound_player.play()
 
 
 func decrease_lives() -> void:
@@ -166,15 +178,11 @@ func _on_feedback_timer_timeout() -> void:
 ## Increases the time display
 func _on_level_timer_timeout() -> void:
 	time += 1
-	var minutes = str(int(time / 60.0))
-	var seconds = str(time % 60)
+	var minutes = int(time / 60.0)
+	var seconds = time % 60
 	
 	# Format time
-	if len(seconds) == 1:
-		seconds = "0" + seconds
-	if len(minutes) == 1:
-		minutes = "0" + minutes
-	time_display.text = minutes + ":" + seconds
+	time_display.text = "%02d:%02d" % [minutes, seconds]
 
 
 ## Increases the speed of the game

@@ -30,11 +30,12 @@ func _set_colour(color: Color) -> void:
 
 func _on_sound_toggled(toggled_on: bool) -> void:
 	Global.settings["sound"] = toggled_on
+	level.sound = toggled_on
 
 
 func _on_music_toggled(toggled_on: bool) -> void:
 	Global.settings["music"] = toggled_on
 	if toggled_on == true:
-		level.audio_player.playing = true
+		level.music_player.playing = true
 	else:
-		level.audio_player.playing = false
+		level.music_player.playing = false

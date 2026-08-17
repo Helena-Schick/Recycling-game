@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://c2y2limy4naeb" path="res://scenes/conveyer_corner.tscn" id="12_8iemx"]
 [ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="13_64w2a"]
 [ext_resource type="AudioStream" uid="uid://dbivf6otwgelh" path="res://assets/tatamusic-gaming-game-video-game-music-550079.mp3" id="16_arp2o"]
+[ext_resource type="AudioStream" uid="uid://08pjdbi2lqee" path="res://assets/correct.mp3" id="17_ux5qa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_klq6b"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -424,7 +425,7 @@ _data = {
 }
 point_count = 3
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display", "audio_player")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display", "music_player", "sound_player")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
@@ -446,14 +447,15 @@ item_scene = ExtResource("3_fpun6")
 settings_menu = ExtResource("3_2r41h")
 game_over_menu = ExtResource("5_wc255")
 main_menu_scene = ExtResource("2_ppgk2")
-audio_player = NodePath("AudioStreamPlayer")
+music_player = NodePath("music player")
+sound_player = NodePath("sound effects player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1371495711]
 environment = SubResource("Environment_8c41q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=545371758]
 transform = Transform3D(-0.89933985, -0.29323465, -0.32434744, -0.21980894, -0.33804786, 0.9151, -0.37798393, 0.8942802, 0.23956433, 0, 0, 0)
-light_color = Color(1, 1, 0.8392157, 1)
+light_color = Color(0.9999998, 0.9255717, 0.676815, 1)
 shadow_enabled = true
 
 [node name="arm" parent="." unique_id=1650899576 node_paths=PackedStringArray("level", "bin_markers") instance=ExtResource("1_2q6dc")]
@@ -721,15 +723,15 @@ size = Vector3(2, 30, 2)
 material = ExtResource("8_8c41q")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Walls" unique_id=466256185]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.383636, 0.57107544, 1.3018875)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.383636, 0.7545471, 1.3018875)
 cast_shadow = 0
-size = Vector3(2, 50, 2)
+size = Vector3(2, 30, 2)
 material = ExtResource("8_8c41q")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Walls" unique_id=1246523380]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6289673, 3.4520874, 132.88783)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.629, 4.5, 132.888)
 cast_shadow = 0
-size = Vector3(95, 40, 1)
+size = Vector3(95, 35, 1)
 
 [node name="Bin1" type="MeshInstance3D" parent="." unique_id=1925441073]
 transform = Transform3D(-223.61833, 199.98706, 8.741713e-06, -2.2023136e-19, -1.3113417e-05, 299.99997, 199.98706, 223.61833, 9.774668e-06, 26.717773, -0.6089144, 14.041508)
@@ -776,17 +778,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626203, -0.01737853, 0.99983495, 7.63678e-08, 0.99983907, 0.01737862, -0.9999868, 5.330089e-05, -0.0030621537, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.0030626196, -0.017378524, 0.9998347, 7.6367776e-08, 0.9998388, 0.017378617, -0.9999866, 5.330088e-05, -0.003062153, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]
 wait_time = 20.0
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1293772344]
+[node name="music player" type="AudioStreamPlayer" parent="." unique_id=1293772344]
 process_mode = 3
 stream = ExtResource("16_arp2o")
 autoplay = true
+
+[node name="sound effects player" type="AudioStreamPlayer" parent="." unique_id=1431965584]
+process_mode = 3
+stream = ExtResource("17_ux5qa")
+volume_db = 4.44
 
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
