@@ -50,7 +50,7 @@ func _ready() -> void:
 	Global.load_data()
 	arm_material.albedo_color = Global.settings["colour"]
 	sound = Global.settings["sound"]
-	camera_c = arm.camera_c
+	camera_c = arm.camera
 	camera_a.make_current()
 	
 	var music = Global.settings["music"]

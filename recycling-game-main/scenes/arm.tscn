@@ -156,12 +156,12 @@ _data = {
 &"open_claw": SubResource("Animation_o10co")
 }
 
-[node name="arm" unique_id=1757234389 node_paths=PackedStringArray("ik", "rest", "marker", "camera_c", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
+[node name="arm" unique_id=1757234389 node_paths=PackedStringArray("ik", "rest", "marker", "camera", "armature", "animation", "ik_target") instance=ExtResource("1_muf2m")]
 script = ExtResource("2_dy6di")
 ik = NodePath("Armature/Skeleton3D/SkeletonIK3D")
 rest = NodePath("rest_position_marker")
 marker = NodePath("Marker3D")
-camera_c = NodePath("Armature/ik_target/Camera C")
+camera = NodePath("Armature/ik_target/Camera C")
 armature = NodePath("Armature")
 animation = NodePath("AnimationPlayer")
 ik_target = NodePath("Armature/ik_target")

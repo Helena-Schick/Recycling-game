@@ -4,7 +4,7 @@ extends Node3D
 @export var rest: Node ## The rest position for the arm
 @export var level: Node ## The root node for the level scene
 @export var marker: Node ## The marker for the position of the claw
-@export var camera_c: Node ## The 3rd camera
+@export var camera: Node ## The arm pov camera
 @export var armature: Node ## The armature for the arm
 @export var animation: Node ## The animation player for the claw
 @export var ik_target: Node ## The target for inverse kinematics

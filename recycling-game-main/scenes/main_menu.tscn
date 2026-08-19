@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhu3j7dtwodyo" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="AudioStream" uid="uid://dbivf6otwgelh" path="res://assets/tatamusic-gaming-game-video-game-music-550079.mp3" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://cljsr0wlqchgo" path="res://scenes/menu_graphics.tscn" id="4_wu84c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.21778041, 0.20230743, 0.20437938, 1)
@@ -17,6 +18,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bqqt6"]
+load_path = "res://.godot/imported/Screenshot 2026-08-19 115327.png-5979e943c861e13ee45055a17c314cb0.ctex"
+
 [node name="MainMenu" type="Control" unique_id=1032258330 node_paths=PackedStringArray("audio_player")]
 layout_mode = 3
 anchors_preset = 15
@@ -28,6 +32,13 @@ script = ExtResource("1_ekxnf")
 level_scene = "res://scenes/level.tscn"
 credits_scene = "res://scenes/credits.tscn"
 audio_player = NodePath("AudioStreamPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=657814047]
+visible = false
+layout_mode = 0
+offset_right = 1225.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 0.31764707)
 
 [node name="Label" type="Label" parent="." unique_id=421233001]
 layout_mode = 1
@@ -83,6 +94,14 @@ text = "Exit"
 process_mode = 3
 stream = ExtResource("2_ekxnf")
 autoplay = true
+
+[node name="Screenshot20260819115327" type="Sprite2D" parent="." unique_id=1541965014]
+visible = false
+position = Vector2(576, 325)
+scale = Vector2(1.0191972, 1.0247678)
+texture = SubResource("CompressedTexture2D_bqqt6")
+
+[node name="Node3D" parent="." unique_id=429986961 instance=ExtResource("4_wu84c")]
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

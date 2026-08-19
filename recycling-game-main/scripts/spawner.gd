@@ -2,9 +2,9 @@ extends Node3D
 
 @export var timer: Node
 @export var item_scene: PackedScene
+@export var time: float = 1.7 ## The average time for each item to spawn
 
 var items: Array[ItemData]
-var time: float = 1.7 ## The average time for each item to spawn
 var randomness: float = 0.4
 
 const SIZE: float = 1.3 ## The size of the area where items spawn
