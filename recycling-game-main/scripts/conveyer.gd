@@ -1,6 +1,6 @@
 extends Conveyer
 
-@export var target_area: Node
+@export var target_area: Node 
 
 
 ## Returns the first item on the conveyer to be grabbed

@@ -305,6 +305,25 @@ material = SubResource("StandardMaterial3D_wu01b")
 text = "4"
 font_size = 100
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux5qa"]
+bg_color = Color(0.21778041, 0.20230743, 0.20437938, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82cfe"]
+bg_color = Color(0.7784456, 0.7784455, 0.77844566, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc255"]
 bg_color = Color(1, 0.74552417, 0.7775029, 0.65882355)
 border_width_left = 2
@@ -603,16 +622,28 @@ metadata/_edit_use_anchors_ = true
 [node name="Resume" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1112605140]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_82cfe")
 text = "Unpause"
 
 [node name="Settings" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1597491005]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_82cfe")
 text = "Settings"
 
 [node name="Exit" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=594748356]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_82cfe")
 text = "Exit to Menu"
 
 [node name="feedback_display" type="Label" parent="CanvasLayer" unique_id=1579998061]
@@ -778,7 +809,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626182, -0.017378518, 0.9998343, 7.636775e-08, 0.9998384, 0.01737861, -0.9999862, 5.3300853e-05, -0.0030621516, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.003062617, -0.01737851, 0.99983394, 7.636772e-08, 0.99983805, 0.017378604, -0.9999858, 5.3300835e-05, -0.0030621504, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]

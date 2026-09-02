@@ -4,14 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="3_81acl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwb3k"]
-bg_color = Color(0.25275353, 0.2527536, 0.25275344, 1)
+bg_color = Color(0.21778041, 0.20230743, 0.20437938, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccgoi"]
-bg_color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+bg_color = Color(0.7784456, 0.7784455, 0.77844566, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dbyacd2im7x4v"]
 
 [ext_resource type="Script" uid="uid://jytolpm5sor1" path="res://scripts/credits.gd" id="1_0bpdh"]
-[ext_resource type="PackedScene" uid="uid://rnif5kchm8ca" path="res://scenes/main_menu.tscn" id="2_2ckv8"]
 
 [node name="Control" type="Control" unique_id=630690363]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0bpdh")
-menu = ExtResource("2_2ckv8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=98818036]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 664.0
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
 
 [node name="Exit" type="Button" parent="." unique_id=771426866]
 layout_mode = 0
@@ -23,19 +28,19 @@ text = "Close"
 
 [node name="Label" type="Label" parent="." unique_id=95106321]
 layout_mode = 0
-offset_left = 504.0
-offset_top = 77.0
-offset_right = 624.0
-offset_bottom = 119.0
+offset_left = 505.0
+offset_top = 69.0
+offset_right = 625.0
+offset_bottom = 111.0
 theme_override_font_sizes/font_size = 30
 text = "CREDITS"
 
 [node name="Label2" type="Label" parent="." unique_id=322989990]
 layout_mode = 0
-offset_left = 137.0
-offset_top = 145.0
-offset_right = 999.0
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 150.0
+offset_right = 1063.0
+offset_bottom = 589.0
 text = "Food Kit by Kenney via Poly Pizza
 https://poly.pizza/bundle/Food-Kit-vOc58LJ0ge
 

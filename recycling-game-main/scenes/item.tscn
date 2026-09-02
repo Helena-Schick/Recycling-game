@@ -10,6 +10,7 @@ mass = 3.0
 script = ExtResource("1_4gq7n")
 mesh_instance = NodePath("MeshInstance3D")
 collision_shape = NodePath("CollisionShape3D")
+metadata/item = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=563066937]
 shape = SubResource("BoxShape3D_4gq7n")

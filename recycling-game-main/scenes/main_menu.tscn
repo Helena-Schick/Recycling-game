@@ -12,14 +12,16 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
-bg_color = Color(0.5673677, 0.56736773, 0.56736773, 1)
+bg_color = Color(0.7784456, 0.7784455, 0.77844566, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bqqt6"]
-load_path = "res://.godot/imported/Screenshot 2026-08-19 115327.png-5979e943c861e13ee45055a17c314cb0.ctex"
 
 [node name="MainMenu" type="Control" unique_id=1032258330 node_paths=PackedStringArray("audio_player")]
 layout_mode = 3
@@ -30,23 +32,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 level_scene = "res://scenes/level.tscn"
-credits_scene = "res://scenes/credits.tscn"
 audio_player = NodePath("AudioStreamPlayer")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=657814047]
-visible = false
-layout_mode = 0
-offset_right = 1225.0
-offset_bottom = 650.0
-color = Color(0, 0, 0, 0.31764707)
 
 [node name="Label" type="Label" parent="." unique_id=421233001]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.28125
-anchor_top = 0.20833333
-anchor_right = 0.6822917
-anchor_bottom = 0.42438272
+anchor_left = 0.3046875
+anchor_top = 0.17283951
+anchor_right = 0.6953125
+anchor_bottom = 0.3888889
 theme_override_font_sizes/font_size = 80
 text = "Title"
 horizontal_alignment = 1
@@ -54,11 +48,12 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245542633]
-layout_mode = 0
-anchor_left = 0.32118055
-anchor_top = 0.47685185
-anchor_right = 0.640625
-anchor_bottom = 0.6851852
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3394097
+anchor_top = 0.43364197
+anchor_right = 0.6605903
+anchor_bottom = 0.6574074
 theme_override_constants/separation = 6
 alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -95,13 +90,7 @@ process_mode = 3
 stream = ExtResource("2_ekxnf")
 autoplay = true
 
-[node name="Screenshot20260819115327" type="Sprite2D" parent="." unique_id=1541965014]
-visible = false
-position = Vector2(576, 325)
-scale = Vector2(1.0191972, 1.0247678)
-texture = SubResource("CompressedTexture2D_bqqt6")
-
-[node name="Node3D" parent="." unique_id=429986961 instance=ExtResource("4_wu84c")]
+[node name="menu graphics" parent="." unique_id=429986961 instance=ExtResource("4_wu84c")]
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]

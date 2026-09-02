@@ -22,17 +22,19 @@ func _on_exit_pressed() -> void:
 	Global.save_data()
 	
 
-## changes and saves the colour of the arm
+## Changes and saves the colour of the arm
 func _set_colour(color: Color) -> void:
 	arm_material.albedo_color = color
 	Global.settings["colour"] = color
 
 
+## Called when the sound is toggled on or off
 func _on_sound_toggled(toggled_on: bool) -> void:
 	Global.settings["sound"] = toggled_on
 	level.sound = toggled_on
 
 
+## Called when the music is toggled on or off
 func _on_music_toggled(toggled_on: bool) -> void:
 	Global.settings["music"] = toggled_on
 	if toggled_on == true:

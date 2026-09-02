@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://cljsr0wlqchgo"]
 
+[ext_resource type="Script" uid="uid://dw61r21yaks3r" path="res://scripts/menu_graphics.gd" id="1_alxua"]
 [ext_resource type="PackedScene" uid="uid://bp6r3jxtah43r" path="res://scenes/conveyer.tscn" id="1_noarx"]
 [ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="2_a0tk4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1pida"]
+size = Vector3(5, 1.5, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_alxua"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.024, 0.159, 18, 0, 0, 0, 0, 0, 0, 0.075, 0.095, -15),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_noarx"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -18,19 +29,37 @@ tonemap_mode = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
 albedo_color = Color(0.22094142, 0.22094142, 0.22094142, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1pida"]
-size = Vector3(5, 1.5, 1)
-
-[node name="Node3D" type="Node3D" unique_id=429986961]
+[node name="Node3D" type="Node3D" unique_id=429986961 node_paths=PackedStringArray("path_follow", "spawner")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_alxua")
+path_follow = NodePath("conveyer/Path3D/PathFollow3D")
+spawner = NodePath("conveyer/spawner")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1537143679]
 transform = Transform3D(-4.3930047e-08, 0.16137981, -0.9868924, 8.0842616e-10, 0.9868924, 0.16137981, 1, 6.2915935e-09, -4.3484693e-08, -19.990715, 8.863723, -1.0790394e-06)
 fov = 43.0
 
 [node name="conveyer" parent="." unique_id=1782603669 instance=ExtResource("1_noarx")]
-transform = Transform3D(-0.99999976, 0, 8.7422755e-08, 0, 1, 0, -8.7422755e-08, 0, -0.99999976, 0, 0, 0)
-speed = 4.0
+transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 0.99999976, 0, 0, 0)
+speed = 3.0
+
+[node name="spawner" parent="conveyer" unique_id=600458319 instance=ExtResource("2_a0tk4")]
+transform = Transform3D(-0.9999992, 0, -8.742271e-08, 0, 1, 0, 8.742271e-08, 0, -0.9999992, -1.5298988e-06, 1.7, -17.500002)
+time = 2.0
+
+[node name="Area3D" type="Area3D" parent="conveyer" unique_id=1067187088]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 1.5298988e-06, 1.239, 17.500002)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer/Area3D" unique_id=1967781713]
+shape = SubResource("BoxShape3D_1pida")
+
+[node name="Path3D" type="Path3D" parent="conveyer" unique_id=828527165]
+transform = Transform3D(-1.0000001, 0, -1.5099582e-07, 0, 1, 0, 1.5099582e-07, 0, -1.0000001, 0, 0, 0)
+curve = SubResource("Curve3D_alxua")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="conveyer/Path3D" unique_id=266963127]
+transform = Transform3D(0.99999565, 3.8122746e-06, -0.0015454236, -8.1509177e-07, 0.999984, 0.0019393549, 0.0015454498, -0.0019393574, 0.99997973, 0.030680923, 0.1506161, 13.677049)
+progress = 4.3230143
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1678711249]
 environment = SubResource("Environment_a0tk4")
@@ -46,16 +75,16 @@ size = Vector3(58.865234, 1, 133.62115)
 material = SubResource("StandardMaterial3D_noarx")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1177920857]
-transform = Transform3D(-0.9999999, 0, 8.742276e-08, 0, 1, 0, -8.742276e-08, 0, -0.9999999, 21.214058, 17.38279, -0.09258846)
+transform = Transform3D(-0.9999998, 0, 8.7422755e-08, 0, 1, 0, -8.7422755e-08, 0, -0.9999998, 17.663809, 17.38279, -0.092588454)
 cast_shadow = 0
 size = Vector3(1, 50, 147.92249)
 
-[node name="spawner" parent="." unique_id=600458319 instance=ExtResource("2_a0tk4")]
-transform = Transform3D(0.99999905, 0, 0, 0, 1, 0, 0, 0, 0.99999905, 0, 1.7, 17.5)
-time = 1.5
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=905716517]
+transform = Transform3D(1, 0, 0, 0, -4.3711413e-08, 1, 0, -1, -4.3711413e-08, 15.996317, 20.879509, 0)
+light_color = Color(1, 1, 0.8156863, 1)
+light_energy = 2.18
+light_indirect_energy = 0.0
+shadow_enabled = true
+spot_range = 49.109
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1067187088]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 1.239, -17.5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1967781713]
-shape = SubResource("BoxShape3D_1pida")
+[connection signal="body_entered" from="conveyer/Area3D" to="." method="_on_area_3d_body_entered"]

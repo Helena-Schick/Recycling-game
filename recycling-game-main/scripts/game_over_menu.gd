@@ -2,11 +2,11 @@ extends Control
 
 @export var level_scene: String
 @export var main_menu: PackedScene
-@export var score_display: Node
-@export var high_score_display: Node
+@export var score_display: Node ## The label that displays the score
+@export var high_score_display: Node ## The label that displays the high score
 
 var score: int ## The final score 
-var high_score
+var high_score ## The current high score
 
 const SCORE_TEXT: String = "SCORE: "
 const HIGH_SCORE_TEXT: String = "HIGH SCORE: "
@@ -29,12 +29,14 @@ func _ready() -> void:
 	high_score_display.text = HIGH_SCORE_TEXT + str(high_score)
 
 
+## Restarts the game
 func _on_play_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file(level_scene)
 	call_deferred("queue_free")
 
 
+## Closes the game and returns to menu
 func _on_exit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(main_menu)

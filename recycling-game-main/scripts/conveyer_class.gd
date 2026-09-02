@@ -14,7 +14,8 @@ func move_items(delta: float) -> void:
 	# Move items forward
 	var bodies = conveyor_area.get_overlapping_bodies()
 	for body in bodies:
-		body.position += direction * speed * delta
+		if not body.on_corner:
+			body.position += direction * speed * delta
 		
 	# Move conveyer belt texture
 	material.uv1_offset.x += OFFSET_SPEED * delta * speed

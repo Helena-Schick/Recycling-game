@@ -29,11 +29,12 @@ extends Node3D
 enum bin_type { RUBBISH, COMPOST, RECYCLING, SOFT_PLASTICS }
 const ITEM_VALUE: int = 10
 const SCORE_TEXT: String = "SCORE: "
+const LIVES_TEXT: String = "LIVES: "
 const CAMERAS: int = 3 ## The number of cameras
 const START_ITEMS: int = 7 ## The number of items that start on the conveyer
-const SPEED_FACTOR: float = 0.15 ## The factor by which the speed increases
 const MAX_SPEED: float = 12.0 ## The maximum speed of the conveyer
-const SPEED_CHANGE: float = 0.8
+const SPEED_CHANGE: float = 0.8 ## The value by which the conveyer speed increases
+const MINUTE_END: int = 60
 
 var score: int = 0 ## The current score
 var lives: int = 3 ## The number of incorrect guesses left
@@ -142,7 +143,7 @@ func change_score(value: int) -> void:
 
 func decrease_lives() -> void:
 	lives -= 1
-	lives_display.text = "LIVES: " + str(lives)
+	lives_display.text = LIVES_TEXT + str(lives)
 	if lives == 0:
 		get_tree().paused = true
 		feedback_display.visible = false
@@ -178,15 +179,15 @@ func _on_feedback_timer_timeout() -> void:
 ## Increases the time display
 func _on_level_timer_timeout() -> void:
 	time += 1
-	var minutes = int(time / 60.0)
-	var seconds = time % 60
+	var minutes = time / MINUTE_END
+	var seconds = time % MINUTE_END
 	
 	# Format time
 	time_display.text = "%02d:%02d" % [minutes, seconds]
 
 
 ## Increases the speed of the game
-func _increase_speed():
+func _increase_speed() -> void:
 	for node in get_tree().get_nodes_in_group("conveyers"):
 		node.speed += SPEED_CHANGE
 	spawner.time -= spawner.TIME_CHANGE

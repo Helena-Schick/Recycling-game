@@ -1,9 +1,9 @@
 extends Control
 
 @export var level_scene: String
-@export var credits_scene: String
 @export var audio_player: Node
 
+var credits_scene = preload("res://scenes/credits.tscn")
 
 func _ready() -> void:
 	Global.load_data()
@@ -24,4 +24,5 @@ func _on_exit_pressed() -> void:
 
 ## Open the credits screen
 func _on_credits_pressed() -> void:
-	get_tree().change_scene_to_file(credits_scene)
+	var credits = credits_scene.instantiate()
+	add_child(credits)

@@ -1,6 +1,6 @@
 extends Control
-@export var menu: PackedScene
 
 
+## Close the credits menu
 func _on_exit_pressed() -> void:
-	get_tree().change_scene_to_packed(menu)
+	call_deferred("queue_free")
