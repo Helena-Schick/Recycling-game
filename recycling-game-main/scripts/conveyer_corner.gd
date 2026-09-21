@@ -1,7 +1,7 @@
 extends Node
 
 @export var conveyor_area: Node ## The area3D that detects items
-var speed: float = 6.7 ## The speed the items move down the conveyer
+var speed: float = 4.5 ## The speed the items move down the conveyer
 
 
 func _physics_process(delta: float) -> void:

@@ -5,21 +5,17 @@ extends Node3D
 @export var animated_mesh: Node
 @onready var material = animated_mesh.get_surface_override_material(0)
 @onready var direction : Vector3 = Vector3(0, 0, 1).rotated(Vector3.UP, rotation.y)
-@export var speed: float = 6.7 ## The speed of the items
+@export var speed: float = 4.5 ## The speed of the items
 
 const OFFSET_SPEED: float = -0.25 # How fast the conveyer belt texture moves 
 
 
-func move_items(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	# Move items forward
-	var bodies = conveyor_area.get_overlapping_bodies()
-	for body in bodies:
-		if not body.on_corner:
-			body.position += direction * speed * delta
+	var items = conveyor_area.get_overlapping_bodies()
+	for item in items:
+		if not item.on_corner:
+			item.position += direction * speed * delta
 		
 	# Move conveyer belt texture
 	material.uv1_offset.x += OFFSET_SPEED * delta * speed
-
-
-func _physics_process(delta: float) -> void:
-	move_items(delta)

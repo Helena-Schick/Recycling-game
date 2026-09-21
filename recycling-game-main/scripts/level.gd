@@ -57,10 +57,9 @@ func _ready() -> void:
 	var music = Global.settings["music"]
 	if music == false:
 		music_player.playing = false
-		
 	
 	# Create items along conveyer
-	for item_number in range(START_ITEMS):
+	for item_number in START_ITEMS:
 		path_follow.progress_ratio = (item_number - randf() * spawner.randomness) / float(START_ITEMS)
 		spawner.spawn_item(path_follow.global_position)
 
@@ -141,9 +140,12 @@ func change_score(value: int) -> void:
 			sound_player.play()
 
 
+## Decreases the player's lives and handles game over
 func decrease_lives() -> void:
 	lives -= 1
 	lives_display.text = LIVES_TEXT + str(lives)
+	
+	# Ends the game when out of lives
 	if lives == 0:
 		get_tree().paused = true
 		feedback_display.visible = false
@@ -152,6 +154,7 @@ func decrease_lives() -> void:
 		add_child(menu)
 
 
+## Opens the settings menu
 func _on_settings_pressed() -> void:
 	var settings = settings_menu.instantiate()
 	pause_menu.visible = false
@@ -159,6 +162,7 @@ func _on_settings_pressed() -> void:
 	add_child(settings)
 
 
+## Shows the feedback display with the given text
 func show_feedback(text: String) -> void:
 	feedback_display.visible = true
 	feedback_display.text = text
