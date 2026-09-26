@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://cijgkxewankfs" path="res://assets/arm_resources/material.tres" id="8_8c41q"]
 [ext_resource type="ArrayMesh" uid="uid://te6qca3jau21" path="res://assets/meshes/Root Scene_Trashcan_Green.res" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://cnqw1ie7dkwdl" path="res://assets/meshes/Dumpster by Quaternius - PKsbolkZSr.glb" id="10_olg7q"]
+[ext_resource type="Texture2D" uid="uid://c1xqlkab1g5fj" path="res://assets/game image.png" id="11_gunhw"]
 [ext_resource type="PackedScene" uid="uid://bp6r3jxtah43r" path="res://scenes/conveyer.tscn" id="11_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://c2y2limy4naeb" path="res://scenes/conveyer_corner.tscn" id="12_8iemx"]
 [ext_resource type="PackedScene" uid="uid://cl1y7pfc47ep1" path="res://scenes/spawner.tscn" id="13_64w2a"]
@@ -337,6 +338,14 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 expand_margin_left = 10.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gunhw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b121j"]
 albedo_color = Color(0.22959313, 0.22959328, 0.22959322, 1)
 
@@ -444,7 +453,7 @@ _data = {
 }
 point_count = 3
 
-[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "time_display", "score_display", "lives_display", "feedback_display", "music_player", "sound_player")]
+[node name="level" type="Node3D" unique_id=447120380 node_paths=PackedStringArray("arm", "timer", "spawner", "conveyor", "camera_a", "camera_b", "animation", "pause_menu", "speed_timer", "path_follow", "pause_button", "tutorial", "time_display", "score_display", "lives_display", "feedback_display", "music_player", "sound_player")]
 script = ExtResource("1_mx8sn")
 arm = NodePath("arm")
 timer = NodePath("feedback_timer")
@@ -457,6 +466,7 @@ pause_menu = NodePath("CanvasLayer/pause_menu")
 speed_timer = NodePath("difficulty_timer")
 path_follow = NodePath("Path3D/PathFollow3D")
 pause_button = NodePath("CanvasLayer/pause")
+tutorial = NodePath("CanvasLayer/tutorial")
 time_display = NodePath("CanvasLayer/time")
 score_display = NodePath("CanvasLayer/score_label")
 lives_display = NodePath("CanvasLayer/lives")
@@ -587,10 +597,9 @@ metadata/_edit_use_anchors_ = true
 [node name="score_label" type="Label" parent="CanvasLayer" unique_id=22530594]
 anchors_preset = -1
 anchor_left = 0.036458332
-anchor_top = 0.904321
+anchor_top = 0.91049385
 anchor_right = 0.096354164
-anchor_bottom = 0.9398148
-offset_right = -8.0
+anchor_bottom = 0.94598764
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "SCORE: 0"
@@ -612,9 +621,9 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pause_menu" unique_id=2001053212]
 anchors_preset = -1
 anchor_left = 0.33333334
-anchor_top = 0.4228395
+anchor_top = 0.38580248
 anchor_right = 0.6527778
-anchor_bottom = 0.63117284
+anchor_bottom = 0.6404321
 theme_override_constants/separation = 6
 alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -622,6 +631,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Resume" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1112605140]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.47
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
@@ -636,6 +646,15 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
 theme_override_styles/hover = SubResource("StyleBoxFlat_82cfe")
 text = "Settings"
+
+[node name="Settings2" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1011502955]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ux5qa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_82cfe")
+text = "How to Play"
 
 [node name="Exit" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=594748356]
 layout_mode = 2
@@ -674,11 +693,109 @@ metadata/_edit_use_anchors_ = true
 [node name="lives" type="Label" parent="CanvasLayer" unique_id=1686415295]
 anchors_preset = -1
 anchor_left = 0.036458332
-anchor_top = 0.83487654
+anchor_top = 0.8518519
 anchor_right = 0.08767361
-anchor_bottom = 0.8703704
+anchor_bottom = 0.8873457
 text = "LIVES: 3"
 metadata/_edit_use_anchors_ = true
+
+[node name="tutorial" type="Control" parent="CanvasLayer" unique_id=749539172]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/tutorial" unique_id=1649045333]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.95
+anchor_top = 1.925
+anchor_right = 27.075
+anchor_bottom = 13.35
+color = Color(0.69411767, 0.69411767, 0.69411767, 0.7921569)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/tutorial" unique_id=2007523885]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 77.0
+offset_right = 1082.0
+offset_bottom = 152.0
+color = Color(0.76156104, 0.76156086, 0.761561, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/tutorial" unique_id=177428571]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 485.0
+offset_right = 1083.0
+offset_bottom = 534.0
+color = Color(0.7607843, 0.7607843, 0.7607843, 1)
+
+[node name="Button" type="Button" parent="CanvasLayer/tutorial" unique_id=1142963446]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 25.4
+anchor_top = 12.375
+anchor_right = 26.65
+anchor_bottom = 13.15
+text = "Close"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/tutorial" unique_id=91707808]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.075
+anchor_top = 2.225
+anchor_right = 18.7
+anchor_bottom = 4.6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "How to play"
+horizontal_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/tutorial" unique_id=1530251207]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 152.0
+offset_right = 1079.0
+offset_bottom = 485.0
+
+[node name="container" type="VBoxContainer" parent="CanvasLayer/tutorial/ScrollContainer" unique_id=676318667]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/tutorial/ScrollContainer/container" unique_id=493021256]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+Press the number keys to sort each item on the conveyer belt into the correct bin."
+
+[node name="Label2" type="Label" parent="CanvasLayer/tutorial/ScrollContainer/container" unique_id=246524894]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gunhw")
+text = "controls
+ 1: rubbish bin
+ 2: for compost bin
+ 3: for recycling bin
+ 4: for soft plastics bin
+Spacebar: change camera angle
+
+Scoring:
++10 for correctly sorting 
+-10 for incorrectly sorting
+-10 for missing an item
+
+You lose a life every time you sort an item incorrectly.
+Try to score as many points as you can before you run out of lives.
+"
+
+[node name="Image" type="Sprite2D" parent="CanvasLayer/tutorial/ScrollContainer/container" unique_id=461648957]
+position = Vector2(677, 187.24998)
+scale = Vector2(0.60458714, 0.50791854)
+texture = ExtResource("11_gunhw")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=119006520]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 20, 0)
@@ -809,7 +926,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.0030626163, -0.017378507, 0.9998337, 7.6367705e-08, 0.9998378, 0.0173786, -0.9999856, 5.3300824e-05, -0.0030621497, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.003062615, -0.0173785, 0.9998332, 7.636766e-08, 0.99983734, 0.017378591, -0.9999851, 5.33008e-05, -0.0030621483, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]
@@ -829,7 +946,9 @@ volume_db = 4.44
 [connection signal="pressed" from="CanvasLayer/pause" to="." method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Resume" to="." method="_resume_game"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Settings2" to="." method="_open_tutorial"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/tutorial/Button" to="." method="_on_close_pressed"]
 [connection signal="body_entered" from="end" to="." method="_on_end_body_entered"]
 [connection signal="timeout" from="feedback_timer" to="." method="_on_feedback_timer_timeout"]
 [connection signal="timeout" from="level_timer" to="." method="_on_level_timer_timeout"]

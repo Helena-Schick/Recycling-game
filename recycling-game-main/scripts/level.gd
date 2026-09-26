@@ -12,6 +12,7 @@ extends Node3D
 @export var path_follow: Node ## The path follow node for spawning on the conveyer
 @export var pause_button: Node ## The button that pauses the game
 
+@export var tutorial: Node ## The display for the tutorial
 @export var time_display: Node ## Shows how long the user has been playing the level for
 @export var score_display: Node ## The label that displays the player's score
 @export var lives_display: Node ## The label that shows lives left
@@ -62,6 +63,12 @@ func _ready() -> void:
 	for item_number in START_ITEMS:
 		path_follow.progress_ratio = (item_number - randf() * spawner.randomness) / float(START_ITEMS)
 		spawner.spawn_item(path_follow.global_position)
+	
+	# Open tutorial if it has not already been shown
+	if not Global.shown_tutorial:
+		_open_tutorial()
+		Global.shown_tutorial = true
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -146,7 +153,7 @@ func decrease_lives() -> void:
 	lives_display.text = LIVES_TEXT + str(lives)
 	
 	# Ends the game when out of lives
-	if lives == 0:
+	if lives <= 0:
 		get_tree().paused = true
 		feedback_display.visible = false
 		var menu = game_over_menu.instantiate()
@@ -201,3 +208,18 @@ func _increase_speed() -> void:
 	if arm.speed >= arm.MAX_SPEED:
 		arm.speed = arm.MAX_SPEED
 		speed_timer.stop()
+
+
+## Closes tutorial
+func _on_close_pressed() -> void:
+	get_tree().paused = false
+	tutorial.visible = false
+
+
+## Opens the tutorial
+func _open_tutorial() -> void:
+	get_tree().paused = true
+	tutorial.visible = true
+	pause_menu.visible = false
+	pause_button.visible = true
+	

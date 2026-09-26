@@ -8,6 +8,7 @@ var settings = {
 	"music" : true,
 	"high_score" : 0
 }
+var shown_tutorial : bool = false ## Whether the tutorial has already been shown
 
 
 ## Saves the settings for the game
