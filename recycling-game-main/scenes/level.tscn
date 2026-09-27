@@ -926,7 +926,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.20633, 2.523, -32.8)
 curve = SubResource("Curve3D_64w2a")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=577133289]
-transform = Transform3D(-0.003062615, -0.0173785, 0.9998332, 7.636766e-08, 0.99983734, 0.017378591, -0.9999851, 5.33008e-05, -0.0030621483, 49.001724, 1.8088338, -32.766308)
+transform = Transform3D(-0.0030626145, -0.017378496, 0.9998331, 7.6367655e-08, 0.9998372, 0.01737859, -0.999985, 5.330079e-05, -0.0030621479, 49.001724, 1.8088338, -32.766308)
 progress = 11.0
 
 [node name="difficulty_timer" type="Timer" parent="." unique_id=743466933]

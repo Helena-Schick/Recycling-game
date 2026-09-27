@@ -68,7 +68,6 @@ func _ready() -> void:
 	if not Global.shown_tutorial:
 		_open_tutorial()
 		Global.shown_tutorial = true
-	
 
 
 func _unhandled_input(event: InputEvent) -> void:

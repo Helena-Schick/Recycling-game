@@ -22,10 +22,11 @@ func _ready() -> void:
 
 ## Spawns the item when the timer goes off
 func _on_timer_timeout() -> void:
-	# restart timer 
+	# Restart timer 
 	timer.wait_time = time + randf_range(-1, 1) * randomness * time
 	timer.start()
 	
+	# Spawn the item
 	var item_position = global_position + Vector3(randf_range(-SIZE, SIZE), 0, 0)
 	spawn_item(item_position)
 

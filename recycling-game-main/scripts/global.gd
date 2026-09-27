@@ -1,14 +1,13 @@
 extends Node
 
-
 var save_path: String = "user://save_data.save"
+var shown_tutorial : bool = false ## Whether the tutorial has already been shown
 var settings = {
 	"colour" : Color("#22d5ff"),
 	"sound" : true,
 	"music" : true,
 	"high_score" : 0
 }
-var shown_tutorial : bool = false ## Whether the tutorial has already been shown
 
 
 ## Saves the settings for the game

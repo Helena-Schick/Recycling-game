@@ -15,7 +15,7 @@ func _ready() -> void:
 	music_toggle.set_pressed_no_signal(Global.settings["music"])
 
 
-## closes the settings menu
+## Closes the settings menu
 func _on_exit_pressed() -> void:
 	level.pause_game()
 	call_deferred("queue_free")
